@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791553531795">
+<meta name="gruzilkin-build" content="1791559481009">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -250,8 +250,16 @@ ul{margin:0;padding:0;list-style:none}
   padding-top:22px;border-top:1px solid var(--line-d);
   font-size:14px;color:var(--gray-2);
 }
-.hero__trust span{display:flex;align-items:center;gap:8px}
-.hero__trust i{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:0 0 5px}
+/* align-items:flex-start и отступ сверху прижимают точку к
+   первой строке. При align-items:center точка выравнивалась по
+   центру блока, а когда пункт переносился на две строки — вставала
+   прямо между ними. Клиент на телефоне читал бы текст, перечёркнутый
+   точкой, и проверка контраста считала бы жёлтый цвет фоном. */
+.hero__trust span{display:flex;align-items:flex-start;gap:8px}
+.hero__trust i{
+  width:5px;height:5px;border-radius:50%;background:var(--accent);
+  flex:0 0 5px;margin-top:.55em;
+}
 /* фото: справа, выходит за сетку */
 /* Фон первого экрана: машина компании, кадр прислан владельцем.
    Затемнение слева направо — обязательное: заголовок белый, а на
@@ -617,7 +625,15 @@ html.no-speech .sayrow{display:none}
   .hero__types span{font-size:12px;padding:7px 12px}
   .hero__cta{gap:9px;margin-top:24px}
   .hero__cta .btn{flex:1 1 100%;min-height:54px;padding:0 18px;font-size:15.5px}
-  .hero__trust{font-size:13px;gap:8px 18px;padding-top:18px}
+  /* Блок доверия на телефоне: зазор между пунктами 18 → 14px.
+     Замер: последние два пункта занимали 139 + 18 + 194 = 351px при
+     доступных 350 — не хватало одного пикселя, и весь список
+     разваливался на три ряда. Третий ряд отодвинул последний
+     пункт под белую нижнюю панель, текст обрезался на 12px.
+     Плюс поджаты отступы сверху и между рядами: на экранах 360 и
+     320 в два ряда не встать без уменьшения кегля ниже 12px, а
+     ТЗ мелкий шрифт запрещает — значит, плотнее, но читаемо. */
+  .hero__trust{font-size:13px;gap:6px 14px;padding-top:14px;margin-top:22px}
   .hero__photo{min-height:190px}
   .say{width:44px;height:44px;flex-basis:44px}
 
@@ -838,7 +854,7 @@ html.no-speech .sayrow{display:none}
         <span><i></i>100+ машин</span>
         <span><i></i>С 2009 года</span>
         <span><i></i>Безнал с НДС и без</span>
-        <span><i></i>Бесплатная оценка</span>
+        <span><i></i>Бесплатная страховка груза</span>
       </div>
     </div>
 
