@@ -259,15 +259,15 @@ ul{margin:0;padding:0;list-style:none}
 .hero__bg::before{
   content:"";position:absolute;inset:0;
   background:linear-gradient(96deg,
-    rgba(43,49,56,97) 0%,
-    rgba(43,49,56,92) 26%,
-    rgba(43,49,56,74) 46%,
-    rgba(43,49,56,42) 68%,
-    rgba(43,49,56,18) 100%);
+    rgba(43,49,56,0.95) 0%,
+    rgba(43,49,56,0.90) 24%,
+    rgba(43,49,56,0.52) 47%,
+    rgba(43,49,56,0.14) 71%,
+    rgba(43,49,56,0.02) 100%);
 }
 .hero__bg::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(43,49,56,9) 0%,transparent 22%,transparent 62%,rgba(43,49,56,86) 100%);
+  background:linear-gradient(180deg,rgba(43,49,56,0.09) 0%,transparent 22%,transparent 62%,rgba(43,49,56,0.86) 100%);
 }
 /* текст и кнопки — над фоном */
 .hero__txt{position:relative;z-index:2}
@@ -547,10 +547,12 @@ html.no-speech .sayrow{display:none}
     background-position:58% 78%;
   }
   .hero__bg::before{
+    /* На телефоне текст занимает почти весь экран, поэтому затемнение
+       ровное: снимок виден, но буквы читаются поверх него. */
     background:linear-gradient(178deg,
-      rgba(43,49,56,86) 0%,
-      rgba(43,49,56,9) 42%,
-      rgba(43,49,56,95) 100%);
+      rgba(43,49,56,0.80) 0%,
+      rgba(43,49,56,0.86) 40%,
+      rgba(43,49,56,0.92) 100%);
   }
   body{font-size:16px}
   .topbar__in{height:64px}
