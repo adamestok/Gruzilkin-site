@@ -71,7 +71,7 @@
   --graphite-2:#353C44;      /* карточки на тёмном */
   --graphite-3:#414952;      /* границы на тёмном */
   --white:#FFFFFF;
-  --accent:#FFC400;          /* единственный цветной акцент */
+  --accent:#FFD400;          /* единственный цветной акцент */
   --accent-ink:#1A1E23;      /* текст на жёлтом — почти чёрный */
 
   /* Серого в тексте нет: пользователь просил убрать серые
@@ -121,8 +121,8 @@ ul{margin:0;padding:0;list-style:none}
   white-space:nowrap;
 }
 /* главный CTA — жёлтый */
-.btn--main{background:var(--accent);color:var(--accent-ink);box-shadow:0 6px 24px rgba(255,196,0,.28)}
-.btn--main:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,196,0,.4)}
+.btn--main{background:var(--accent);color:var(--accent-ink);box-shadow:0 6px 24px rgba(255,212,0,.28)}
+.btn--main:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,212,0,.4)}
 .btn--main:active{transform:translateY(0) scale(.99)}
 /* вторичный CTA — контур */
 .btn--ghost{background:transparent;color:var(--black);border:1.5px solid var(--black)}
@@ -196,8 +196,9 @@ ul{margin:0;padding:0;list-style:none}
 .shead h2{font-size:clamp(30px,4.2vw,50px);max-width:18ch}
 .shead p{font-size:17px;color:var(--gray-1);max-width:56ch}
 .sec--dark .shead p{color:var(--gray-2)}
-/* на тёмном фоне серый для текста всегда светлый: тёмный #5F6673
-   на чёрном даёт 3.4, ниже порога для мелкого текста */
+/* на тёмном фоне текст всегда белый: тёмный серый на графите
+   давал 3.4 — ниже порога для мелкого текста. Плюс заказчик
+   просил убрать серые буквы совсем. */
 .hero .eyebrow,.hero__sub,.hero__types span,.hero__trust,
 .calc .eyebrow,.calc__note,.calc__total span,
 .park .eyebrow,.park .shead p,.car__spec dt,.car__p span,
@@ -292,7 +293,7 @@ ul{margin:0;padding:0;list-style:none}
   font-size:15.5px;font-weight:600;
 }
 .fld select{-webkit-appearance:none;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%239CA3AF' stroke-width='2'%3E%3Cpath d='M2 5l5 5 5-5'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23FFFFFF' stroke-width='2'%3E%3Cpath d='M2 5l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
 .stepper{display:flex;align-items:center;min-height:52px;
   background:#3A4149;border:1px solid var(--line-d);border-radius:var(--r);overflow:hidden}
@@ -331,7 +332,7 @@ ul{margin:0;padding:0;list-style:none}
 .cmp thead th:nth-child(3){color:var(--accent-ink);background:var(--accent)}
 .cmp tbody th{font-weight:500;color:var(--gray-1);width:26%}
 .cmp td:first-of-type{color:var(--gray-1)}
-.cmp td:last-child{font-weight:700;background:rgba(255,196,0,.09)}
+.cmp td:last-child{font-weight:700;background:rgba(255,212,0,.09)}
 .cmp td:last-child svg{width:16px;height:16px;vertical-align:middle;color:var(--accent);margin-right:6px}
 .cmp tbody tr:last-child th,.cmp tbody tr:last-child td{border-bottom:0}
 
@@ -691,7 +692,7 @@ html.no-speech .sayrow{display:none}
          Формы у всех разные намеренно: проверка попиксельно
          показала, что три газели на общем кузове совпадали на
          96…98% и человек их не отличал. -->
-    <style>.car__ico .w{fill:#FFC400;stroke:none}</style>
+    <style>.car__ico .w{fill:#FFD400;stroke:none}</style>
     <symbol id="v-gazel3" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 3 метра"><path d="M3 23V15l7-6h9V4h34v19z"/><path d="M19 9h34"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="46" cy="24" r="3.4"/></symbol>
     <symbol id="v-gazel42" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 4,2 метра"><path d="M3 24V14l8-5h10V6h40v18z"/><path d="M3 24h58"/><path d="M21 6v4"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="40" cy="24" r="3.4"/><circle class="w" cx="56" cy="24" r="3.4"/></symbol>
     <symbol id="v-gazel56" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 5–6 метров"><path d="M3 24V14l8-5h8V9a16 10 0 0 1 32 0v15z"/><path d="M19 9h0"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="50" cy="24" r="3.4"/></symbol>
@@ -711,9 +712,9 @@ html.no-speech .sayrow{display:none}
     <a class="brand" href="#top" aria-label="Грузилкин — на главную">
       <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="38" height="38" rx="11" fill="#111111"/>
-        <rect x="8" y="13" width="15" height="11" rx="2" fill="#FFC400"/>
+        <rect x="8" y="13" width="15" height="11" rx="2" fill="#FFD400"/>
         <path d="M24 17h4.6l3.4 3.2V24H24z" fill="#FFFFFF" fill-opacity=".55"/>
-        <circle cx="13" cy="28" r="2.6" fill="#FFC400"/><circle cx="27" cy="28" r="2.6" fill="#FFFFFF" fill-opacity=".55"/>
+        <circle cx="13" cy="28" r="2.6" fill="#FFD400"/><circle cx="27" cy="28" r="2.6" fill="#FFFFFF" fill-opacity=".55"/>
       </svg>
       <span>
         <span class="brand__name">ГРУЗИЛКИН</span>
@@ -1323,7 +1324,7 @@ html.no-speech .sayrow{display:none}
                  а не тема. В шапке плашка графитовая, чтобы не
                  выглядеть пятном на белом. -->
           <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-            <rect x="1" y="1" width="38" height="38" rx="11" fill="#FFC400"/>
+            <rect x="1" y="1" width="38" height="38" rx="11" fill="#FFD400"/>
             <rect x="8" y="13" width="15" height="11" rx="2" fill="#111111"/>
             <path d="M24 17h4.6l3.4 3.2V24H24z" fill="#111111" fill-opacity=".5"/>
             <circle cx="13" cy="28" r="2.6" fill="#111111"/><circle cx="27" cy="28" r="2.6" fill="#111111" fill-opacity=".5"/>
