@@ -377,10 +377,16 @@ ul{margin:0;padding:0;list-style:none}
   display:grid;place-items:center;position:relative;
   background:#2F353C;min-height:150px;
 }
-.car__ph--type b{
-  font-family:var(--ff-d);font-size:clamp(56px,7vw,86px);font-weight:800;
-  line-height:1;letter-spacing:-.04em;color:var(--accent);opacity:.9;
+/* Силуэт машины вместо фотографии. Схема типа, а не фото:
+   обещать конкретную Газель мы не можем — её у нас нет.
+   Силуэт белый, колёса жёлтые: та же палитра, третьего цвета нет.
+   Как появится настоящее фото в assets\cars, оно перекроет
+   силуэт — механизм подстановки прежний. */
+.car__ico{
+  width:clamp(96px,42%,140px);height:auto;display:block;
+  color:var(--white);opacity:.92;
 }
+.car__ph--type img~.car__ico,.car__ph--type:has(img) .car__ico{display:none}
 .car__ph--type img{display:block;width:100%;height:100%;object-fit:cover}
 
 .car__body{padding:20px;display:grid;gap:14px;align-content:start}
@@ -681,6 +687,20 @@ html.no-speech .sayrow{display:none}
     <symbol id="i-spec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M2 20h20"/><path d="M5 20v-5l4-3 3 2v6"/><path d="M14 20v-8h6v8"/><circle cx="9" cy="17" r="1.5"/>
     </symbol>
+    <!-- Силуэты машин для карточек автопарка: схема типа, не фото.
+         Формы у всех разные намеренно: проверка попиксельно
+         показала, что три газели на общем кузове совпадали на
+         96…98% и человек их не отличал. -->
+    <style>.car__ico .w{fill:#FFC400;stroke:none}</style>
+    <symbol id="v-gazel3" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 3 метра"><path d="M3 23V15l7-6h9V4h34v19z"/><path d="M19 9h34"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="46" cy="24" r="3.4"/></symbol>
+    <symbol id="v-gazel42" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 4,2 метра"><path d="M3 24V14l8-5h10V6h40v18z"/><path d="M3 24h58"/><path d="M21 6v4"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="40" cy="24" r="3.4"/><circle class="w" cx="56" cy="24" r="3.4"/></symbol>
+    <symbol id="v-gazel56" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 5–6 метров"><path d="M3 24V14l8-5h8V9a16 10 0 0 1 32 0v15z"/><path d="M19 9h0"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="50" cy="24" r="3.4"/></symbol>
+    <symbol id="v-bych" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Бычок до 5 тонн"><path d="M3 24V6q0-1 1-1h13q1 0 1 1v18z"/><path d="M18 18h34l8 6H18z"/><path d="M18 18V14"/><circle class="w" cx="11" cy="24" r="3.6"/><circle class="w" cx="38" cy="24" r="3.6"/><circle class="w" cx="54" cy="24" r="3.6"/></symbol>
+    <symbol id="v-manip" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Манипулятор"><path d="M3 21V13q0-1 1-1h12q1 0 1 1v8z"/><path d="M3 21h44"/><path d="M26 21 44 8l12 3"/><path d="M56 11v9c0 3-4 3-4 5"/><circle class="w" cx="11" cy="24" r="3.4"/><circle class="w" cx="40" cy="24" r="3.4"/></symbol>
+    <symbol id="v-evac" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Эвакуатор"><path d="M3 21V13q0-1 1-1h12q1 0 1 1v8z"/><path d="M17 22h38"/><path d="M19 17h20v5H19z"/><path d="M39 17 55 6h6v4"/><circle class="w" cx="11" cy="24" r="3.4"/><circle class="w" cx="42" cy="24" r="3.4"/></symbol>
+    <symbol id="v-vyshka" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Автовышка"><path d="M3 22V14q0-1 1-1h12q1 0 1 1v8z"/><path d="M3 22h50"/><path d="M22 22 30 12V4"/><path d="M22 4h16v8H22z"/><path d="M38 8h10"/><circle class="w" cx="11" cy="24" r="3.4"/><circle class="w" cx="44" cy="24" r="3.4"/></symbol>
+    <symbol id="v-samosval" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Самосвал"><path d="M3 24V16l7-5h8v13z"/><path d="M20 24 30 4h25l4 12"/><path d="M20 24 33 16"/><path d="M55 16h6"/><circle class="w" cx="12" cy="24" r="3.4"/><circle class="w" cx="44" cy="24" r="3.4"/></symbol>
+
   </defs>
 </svg>
 
@@ -969,7 +989,7 @@ html.no-speech .sayrow{display:none}
 
     <div class="park__grid">
       <article class="car">
-        <div class="car__ph"><img src="" loading="lazy" decoding="async"
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-gazel3"/></svg><img src="" loading="lazy" decoding="async"
              alt="Газель 3 метра — белый борт с рекламой компании"></div>
         <div class="car__body">
           <h3 class="car__h">Газель 3 м</h3>
@@ -983,7 +1003,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>02</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-gazel42"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Газель 4,2 м</h3>
           <dl class="car__spec">
@@ -996,7 +1016,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>03</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-gazel56"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Газель 5–6 м</h3>
           <dl class="car__spec">
@@ -1009,7 +1029,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>04</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-bych"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Бычок до 5 т</h3>
           <dl class="car__spec">
@@ -1022,7 +1042,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>05</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-manip"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Манипулятор</h3>
           <dl class="car__spec">
@@ -1035,7 +1055,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>06</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-evac"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Эвакуатор</h3>
           <dl class="car__spec">
@@ -1048,7 +1068,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>07</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-vyshka"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Автовышка</h3>
           <dl class="car__spec">
@@ -1061,7 +1081,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><b>08</b></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-samosval"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Самосвал</h3>
           <dl class="car__spec">
