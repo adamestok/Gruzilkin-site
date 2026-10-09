@@ -1479,28 +1479,101 @@ html.no-speech .sayrow{display:none}
   if (!supports) document.documentElement.classList.add("no-speech");
   var current = null, currentBtn = null;
 
-  function pickVoice() {
+  /* Русский голос запоминаем сразу и обновляем, когда браузер
+     пришлёт список. До этого переменная равна null — это и есть
+     признак «первого нажатия», когда голос ещё не готов. */
+  var ruVoice = null;
+  function refreshVoices() {
     try {
       var all = speechSynthesis.getVoices() || [];
+      ruVoice = null;
       for (var i = 0; i < all.length; i++) {
-        if (/^ru/i.test(all[i].lang)) return all[i];
+        if (/^ru/i.test(all[i].lang)) { ruVoice = all[i]; break; }
       }
-      return null;
+      return ruVoice;
     } catch (e) { return null; }
   }
+  function pickVoice() { return ruVoice || refreshVoices(); }
+
+  /* Промпт: список голосов в Chrome приходит асинхронно. Без
+     этого первое нажатие говорит голосом по умолчанию, то есть
+     не по-русски, — ровно та поломка, которую слышали. */
+  var voiceWaiters = [];
   if (supports) {
-    try { speechSynthesis.onvoiceschanged = function () { pickVoice(); }; } catch (e) {}
+    try {
+      refreshVoices();
+      speechSynthesis.onvoiceschanged = function () {
+        refreshVoices();
+        var w = voiceWaiters; voiceWaiters = [];
+        for (var i = 0; i < w.length; i++) w[i]();
+      };
+    } catch (e) {}
+  }
+  function whenVoiceReady() {
+    if (!supports) return Promise.resolve(null);
+    if (pickVoice()) return Promise.resolve(pickVoice());
+    refreshVoices();
+    if (pickVoice()) return Promise.resolve(pickVoice());
+    return new Promise(function (resolve) {
+      var done = false;
+      /* 400 мс, а не полторы секунды: столько хватает Chrome на
+         Voiceschanged. Дальше ждать нельзя — человек после
+         нажатия должен слышать речь сразу, пусть и голосом,
+         выбранным движком по lang ru-RU. */
+      var timer = setTimeout(function () {
+        if (done) return; done = true; resolve(ruVoice);
+      }, 400);
+      voiceWaiters.push(function () {
+        if (done) return; done = true; clearTimeout(timer); resolve(ruVoice);
+      });
+    });
+  }
+
+  /* Приводит текст к тому, что движок речи читает без запинок:
+     знак рубля заменяем словом, разделитель — запятой, двойные
+     пробелы и неразрывные — одним. Пробелы между соседними
+     элементами цены тоже склеивались: было «1 800 ₽в час». */
+  function clean(t) {
+    return (t || "")
+      .replace(/\u00a0/g, " ")
+      .replace(/₽\s*\/\s*час/g, " рублей в час")
+      .replace(/₽/g, " рублей")
+      .replace(/·/g, ",")
+      .replace(/\s*[—–]\s*/g, " — ")
+      .replace(/\s+\/\s+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  /* Заголовок своей секции. На первом экране к нему добавляется
+     цена: «Газель с грузчиками от 1 800 рублей» произносится
+     одной фразой, а не ценой без названия машины. */
+  function headingFor(btn) {
+    var sec = btn.closest("section") || document;
+    var h = sec.querySelector("h1, h2");
+    if (!h) return "";
+    var parts = [];
+    var t = (h.textContent || "").trim();
+    if (t) parts.push(t);
+    var price = sec.querySelector(".hero__price");
+    if (price) {
+      var kids = price.querySelectorAll("span, small, b");
+      for (var i = 0; i < kids.length; i++) {
+        var v = (kids[i].textContent || "").trim();
+        if (v) parts.push(v);
+      }
+      if (!kids.length) {
+        var pv = (price.textContent || "").trim();
+        if (pv) parts.push(pv);
+      }
+    }
+    return clean(parts.join(" "));
   }
 
   function textFor(btn) {
     var own = btn.getAttribute("data-say");
-    if (own) return own;
-    if (btn.getAttribute("data-say-from") === "prev") {
-      var host = btn.closest(".sayrow") || btn.parentElement;
-      var src = host && host.previousElementSibling;
-      return src ? (src.textContent || "").replace(/\s+/g, " ").trim() : "";
-    }
-    return "";
+    if (own) return clean(own);
+    return headingFor(btn);
   }
 
   function stop() {
@@ -1519,15 +1592,21 @@ html.no-speech .sayrow{display:none}
     var u = new SpeechSynthesisUtterance(text.slice(0, 700));
     u.lang = "ru-RU";
     u.rate = 1.02;
-    var v = pickVoice();
-    if (v) u.voice = v;
     u.onend = stop;
     u.onerror = stop;
     currentBtn = btn;
     btn.classList.add("is-on");
     btn.setAttribute("aria-pressed", "true");
     current = u;
-    try { speechSynthesis.speak(u); } catch (e) { stop(); }
+
+    /* Ждём русский голос, если он ещё не пришёл: первое нажатие
+       не должно говорить чужим голосом. Ждём недолго — лучше
+       начать читать с lang ru-RU, чем молчать полторы секунды. */
+    whenVoiceReady().then(function (v) {
+      if (current !== u) return;
+      if (v) u.voice = v;
+      try { speechSynthesis.speak(u); } catch (e) { stop(); }
+    });
   }
 
   $$(".say").forEach(function (btn) {
