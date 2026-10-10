@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791603965355">
+<meta name="gruzilkin-build" content="1791610912714">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -95,7 +95,9 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px;
+  /* текст выезжает за край — срезаем, иначе документ шире окна */
+  overflow-x:clip}
 body{
   margin:0;background:var(--white);color:var(--black);
   font-family:var(--ff);font-size:17px;line-height:1.6;
@@ -612,10 +614,17 @@ ul{margin:0;padding:0;list-style:none}
 .sec--dark .say:hover,.hero .say:hover{background:var(--accent);color:var(--accent-ink)}
 html.no-speech .sayrow{display:none}
 
-/* ── появление блоков: только один раз, без повтора ── */
-.rv{opacity:0;transform:translateY(22px);
+/* ── появление блоков: только один раз, без повтора ──
+   Текст выезжает сбоку: слева направо, поочерёдно с обеих
+   сторон. Направление задаёт класс .sx-l или .sx-r, который
+   вешает скрипт по порядку элементов: соседние заголовки и
+   абзацы едут навстречу друг другу.
+   Классы вешает скрипт — без него анимации нет и текст виден. */
+.rv{opacity:0;transform:translateX(var(--sx,56px));
   transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .rv.is-in{opacity:1;transform:none}
+.rv.sx-l{--sx:-56px}
+.rv.sx-r{--sx:56px}
 
 /* ============================================================
    АДАПТИВ
@@ -680,11 +689,20 @@ html.no-speech .sayrow{display:none}
   }
   body{font-size:16px}
   .topbar__in{height:64px}
+  /* шапка не должна выталкивать кнопку меню за экран:
+     сжиматься может бренд — он широкий. Кнопка меню, наоборот,
+     обязана остаться 44px, поэтому фиксируем ей размер явно. */
+  .topbar__in .brand{min-width:0}
+  .burger{width:44px;min-width:44px}
   .brand__sub{display:none}
 
   /* первый экран на телефоне: заголовок, цена, кнопки, фото */
   .hero__in{padding:84px var(--pad) 0;gap:24px}
-  .hero__h1{font-size:clamp(30px,9vw,40px)}
+  /* Заголовок в одну строку. Граница измерена: при 26px он
+     влезает в 280px (телефон 320), при 30px — в 320px (360),
+     при 33px — в 350px (390). Отсюда 9,1vw минус 3,6px:
+     доступная ширина линейна по экрану, поля постоянные. */
+  .hero__h1{font-size:clamp(25px,calc(9.1vw - 3.6px),32px);line-height:1.12}
   .hero__price{font-size:clamp(26px,7.5vw,34px);margin-top:20px}
   .hero__sub{font-size:15.5px}
   .hero__types span{font-size:12px;padding:7px 12px}
@@ -730,10 +748,20 @@ html.no-speech .sayrow{display:none}
   .adv__l{font-size:13.5px}
 
   .svcs{grid-template-columns:1fr}
-  .park__grid{grid-template-columns:1fr}
+  .park__grid{grid-template-columns:minmax(0,1fr)}
+  /* длинные подписи вроде «Отзывы на Яндекс Картах (4,8 ★, 191
+     оценка)» или «Рассчитать перевозку для бизнеса» не
+     помещались в 320px. Правило общее для всех кнопок в
+     секциях: любая длинная надпись вылезет так же. */
+  .wrap .btn{max-width:100%;white-space:normal}
   .revs{grid-template-columns:1fr}
-  .biz__grid{grid-template-columns:1fr;gap:24px}
-  .biz__f{grid-template-columns:1fr}
+  /* узкий экран: колонка не должна раздуваться под содержимое.
+     1fr — это minmax(auto,1fr), и колонка не сожмётся уже
+     содержимого; minmax(0,1fr) разрешает сжаться. */
+  .biz__grid{grid-template-columns:minmax(0,1fr);gap:24px}
+  .biz__f{grid-template-columns:minmax(0,1fr)}
+  .biz__grid>div{min-width:0}
+  .biz__f>div{min-width:0}
   .foot__grid{grid-template-columns:1fr;gap:26px}
   .work__grid{grid-template-columns:1fr}
   .work__i:first-child{grid-column:auto;aspect-ratio:4/3}
@@ -756,9 +784,24 @@ html.no-speech .sayrow{display:none}
   .rv{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
+/* Совсем узкий телефон (до 380px): первый экран по высоте не
+   помещался над нижней панелью — блок доверия уходил под неё.
+   Уменьшаем верхний отступ и два вертикальных зазора. */
+@media (max-width:380px){
+  /* подписи бренда при 320px физически некуда деть:
+     название компании остаётся, подпись убирается */
+  .topbar .brand__sub{display:none}
+  .hero__in{padding-top:60px}
+  .hero__price{margin-top:14px}
+  .hero__cta{margin-top:18px}
+  .hero__trust{margin-top:16px;padding-top:12px}
+}
+
 @media print{
   .topbar,.mobar,.mobnav,.bot,.to-top,.sayrow{display:none}
   .sec{page-break-inside:avoid}
+  .rv{opacity:1;transform:none}
+
 }
 </style>
 
@@ -1596,13 +1639,19 @@ html.no-speech .sayrow{display:none}
         io.unobserve(e.target);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.06 });
-    reveal.forEach(function (el) {
+    /* Направление выезда чередуется: слева, справа, слева…
+       Порядок берём из документа, поэтому первая секция
+       начинает с левой стороны. */
+    reveal.forEach(function (el, i) {
       el.classList.add("rv");
+      el.classList.add(i % 2 ? "sx-r" : "sx-l");
       io.observe(el);
     });
   } else {
     reveal.forEach(function (el) { el.classList.add("is-in"); });
   }
+
+  
 
   /* ── 3. ОЗВУЧИВАНИЕ ТЕКСТА ──
      Синтез речи в браузере, сервер не нужен. Кнопки прячутся, если
