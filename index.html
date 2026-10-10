@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791610912714">
+<meta name="gruzilkin-build" content="1791632860150">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -163,7 +163,7 @@ ul{margin:0;padding:0;list-style:none}
 .hdr-tel svg{width:16px;height:16px;color:var(--accent)}
 .hdr-cta{display:none}
 
-/* Моргающая жёлтая кнопка в шапке: Заказать Газель -> tel:83532832424 */
+/* Моргающая жёлтая кнопка в шапке: Оформить заказ -> tel:83532832424 */
 @keyframes btn-blink-pulse {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(255, 212, 0, 0.8), 0 3px 10px rgba(0, 0, 0, 0.15);
@@ -234,7 +234,11 @@ ul{margin:0;padding:0;list-style:none}
   border-bottom:1px solid var(--line);letter-spacing:-.02em}
 /* фиксированные маскоты (Заяц и Бык) в полный рост страницы */
 .mascot-side{
-  position:fixed;top:72px;bottom:0;z-index:99;
+  /* z-index 1, а не 99: маскоты должны быть ПОД текстом. Слои
+     первого экрана — фотография с затемнением (0), маскоты (1),
+     текст (2). При 99 заяц рисовался поверх белого заголовка:
+     белым по белому контраст падал до 1,03 при норме 4,5. */
+  position:fixed;top:72px;bottom:0;z-index:1;
   pointer-events:none;user-select:none;
   display:flex;align-items:flex-end;
   filter:drop-shadow(0 6px 22px rgba(0,0,0,.35));
@@ -242,8 +246,14 @@ ul{margin:0;padding:0;list-style:none}
 .mascot-side--left{left:0;justify-content:flex-start}
 .mascot-side--right{right:0;justify-content:flex-end}
 .mascot-side img{
+  /* Высота задаёт размер, ширина следует из пропорций картинки.
+     Раньше стоял потолок ширины min(360px,20vw): бык вшит
+     446×800 и при полной высоте требует 513px, а получал
+     336 — его сжимало поперёк, и рядом оставалась пустота.
+     Теперь картинка занимает ровно столько места, сколько
+     нужно, и растянута на всю высоту страницы. */
   height:calc(100vh - 76px);max-height:92vh;
-  width:auto;max-width:min(360px,20vw);
+  width:auto;max-width:none;
   object-fit:contain;display:block;
 }
 @media (max-width:1380px){.mascot-side{display:none}}
@@ -358,6 +368,18 @@ ul{margin:0;padding:0;list-style:none}
 }
 /* текст и кнопки — над фоном */
 .hero__txt{position:relative;z-index:2}
+/* Подложка под текстом. Затемнение фотографии лежит под
+   маскотами и осветлить их не может, поэтому под буквами
+   кладём свою мягкую тень. Она рисуется поверх маскотов и
+   под текстом: белые буквы читаются всегда, а сами фигуры
+   остаются видны по краям. */
+.hero__txt::before{
+  content:"";position:absolute;z-index:-1;
+  inset:-56px -90px -48px -60px;
+  background:radial-gradient(120% 100% at 26% 46%,
+    rgba(18,21,25,.94) 0%,rgba(18,21,25,.86) 45%,
+    rgba(18,21,25,.55) 72%,rgba(18,21,25,0) 100%);
+}
 
 /* ── быстрый калькулятор ── */
 .calc{background:var(--black);color:var(--white)}
@@ -638,6 +660,12 @@ html.no-speech .sayrow{display:none}
    ============================================================ */
 .hero{min-height:clamp(560px,78vh,700px)}
 @media (min-width:1101px){.hero{min-height:clamp(600px,80vh,740px)}}
+/* Сетка автопарка на широких экранах. Раньше колонки задавались
+   только узким экранам, поэтому на мониторе сетка оставалась
+   одноколоночной: карточка 1184×1074px, секция 8233px = 8,2
+   экрана. Здесь задаём колонки явно. */
+@media (min-width:1101px){.park__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:901px) and (max-width:1100px){.park__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:1100px){
   .nav{display:none}
   .hdr-tel{display:flex}
@@ -928,8 +956,8 @@ html.no-speech .sayrow{display:none}
     <a class="hdr-tel" href="tel:+73532432424">
       <svg aria-hidden="true"><use href="#i-phone"/></svg>8 (3532) 43-24-24
     </a>
-    <a class="btn-blink-order" href="tel:83532832424" aria-label="Заказать Газель — звонок на номер 83532832424">
-      Заказать Газель
+    <a class="btn-blink-order" href="tel:83532832424" aria-label="Оформить заказ — звонок на номер 83532832424">
+      Оформить заказ
     </a>
 
     <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobnav">
