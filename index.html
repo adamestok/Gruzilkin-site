@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791636609893">
+<meta name="gruzilkin-build" content="1791636931758">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -470,12 +470,16 @@ ul{margin:0;padding:0;list-style:none}
 .svcs{display:grid;gap:16px}
 .svc{
   display:grid;gap:14px;padding:clamp(24px,2.8vw,36px);
-  border:1px solid rgba(43,49,56,0.14);border-radius:var(--r-lg);
+  /* Контур всегда тёмный: по просьбе рамка не должна зависеть
+     от наведения. Раньше при наведении она становилась
+     тёмной, в покое была почти незаметной. Теперь наведение
+     только приподнимает карточку и усиливает тень. */
+  border:1.5px solid var(--black);border-radius:var(--r-lg);
   background:var(--white);
   box-shadow:0 14px 34px rgba(43,49,56,0.22), 0 2px 6px rgba(43,49,56,0.08);
-  transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;
+  transition:transform .25s var(--ease),box-shadow .25s;
 }
-.svc:hover{transform:translateY(-4px);border-color:var(--black);
+.svc:hover{transform:translateY(-4px);
   box-shadow:0 22px 50px rgba(43,49,56,0.36), 0 4px 12px rgba(43,49,56,0.12)}
 .svc__n{font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--accent-ink);
   background:var(--accent);width:34px;height:34px;display:grid;place-items:center;border-radius:9px}
