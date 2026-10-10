@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791635600767">
+<meta name="gruzilkin-build" content="1791636609893">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -590,6 +590,22 @@ ul{margin:0;padding:0;list-style:none}
 .policy__doc ul{margin:0 0 12px;padding-left:22px}
 .policy__doc li{margin-bottom:6px}
 
+/* ── грузчики ──
+   Карточки повторяют секцию услуг, чтобы рядом с автопарком
+   смотрелись своими. Нижняя плашка — цена и кнопка. */
+.loaders .svcs{margin-top:6px}
+.loaders__note{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:18px;margin-top:26px;padding:20px 22px;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--white);
+}
+.loaders__note p{margin:0;max-width:62ch;font-size:14.5px;color:var(--gray-1)}
+.loaders__note b{color:var(--black)}
+@media (max-width:600px){
+  .loaders__note{flex-direction:column;align-items:stretch;text-align:center}
+  .loaders__note .btn{width:100%}
+}
+
 /* ── отзывы ── */
 .revs{display:grid;gap:16px}
 .rev{
@@ -903,7 +919,7 @@ html.no-speech .sayrow{display:none}
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+﻿<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M2 7h11v9H2z"/><path d="M13 10h4l4 3v3h-8z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/>
@@ -1349,6 +1365,53 @@ html.no-speech .sayrow{display:none}
 </section>
 
 <!-- ══════════ КАК ЭТО РАБОТАЕТ ══════════ -->
+<!-- ══════════ ГРУЗЧИКИ ══════════ -->
+<section class="sec loaders" id="loaders">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">Грузчики</span>
+      <h2>Грузчики для переезда и погрузки</h2>
+      <p>Штатные грузчики с подготовкой, от 900 ₽/час за человека. Без машины тоже можно.</p>
+      <div class="sayrow"><button class="say" type="button" data-say-from="prev" aria-label="Озвучить"><svg class="say__play" aria-hidden="true"><use href="#i-sound"/></svg><svg class="say__stop" aria-hidden="true"><use href="#i-stop"/></svg></button></div>
+    </div>
+
+    <div class="svcs">
+      <article class="svc">
+        <div class="svc__n">01</div>
+        <h3>Переезд от двери до двери</h3>
+        <p>Упакуем мебель и технику, разберём, погрузим, разгрузим и расставим по местам. Упаковку и коробки уберём после работы.</p>
+        <div class="svc__list"><span>Квартира</span><span>Офис</span><span>Дача</span></div>
+        </article>
+
+      <article class="svc">
+        <div class="svc__n">02</div>
+        <h3>Разбор и сборка мебели</h3>
+        <p>Разберём шкафы, комоды и кровати, погрузим, а на новом месте соберём и расставим. Монтаж бытовой техники.</p>
+        <div class="svc__list"><span>Разбор</span><span>Сборка</span><span>Монтаж техники</span></div>
+        </article>
+
+      <article class="svc">
+        <div class="svc__n">03</div>
+        <h3>Погрузка без машины</h3>
+        <p>Нужны только грузчики: выгрузка, подъём, перенос по этажу. Крепим мебель специальными ремнями внутри машины.</p>
+        <div class="svc__list"><span>Погрузка</span><span>Разгрузка</span><span>Перенос</span></div>
+        </article>
+
+      <article class="svc">
+        <div class="svc__n">04</div>
+        <h3>Вывоз и уборка</h3>
+        <p>Разберём старую мебель, вывезем строительный мусор и уберём на месте после погрузки.</p>
+        <div class="svc__list"><span>Старая мебель</span><span>Мусор</span><span>Уборка</span></div>
+        </article>
+    </div>
+
+    <div class="loaders__note">
+      <p><b>Оплата почасовая.</b> Каждый 10-й накопленный час работы газели или грузчика — бесплатно, в пределах Оренбурга и области. Точную сумму называет диспетчер после уточнения объёма и условий.</p>
+      <a class="btn btn--main btn--order" href="#calc" style="min-height:46px;font-size:14.5px">Оформить заказ</a>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="steps">
   <div class="wrap">
     <div class="shead">
