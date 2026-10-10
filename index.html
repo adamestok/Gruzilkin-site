@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791633903889">
+<meta name="gruzilkin-build" content="1791635372951">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -365,17 +365,19 @@ ul{margin:0;padding:0;list-style:none}
 }
 .hero__bg::before{
   content:"";position:absolute;inset:0;
-  /* Плотная зона держится до 56% ширины — это за правым краем
-     текста, который по замеру кончается на 53.3%. Дальше затемнение
-     спадает, и с 72% ширины фотография не тронута вовсе: машина,
-     борт и башня видны справа целиком. */
+  /* Затемнение сделали равномерным и слабым: раньше слева стояло
+     0.94, и снимок под текстом гас совсем — фон был, но глава на
+     фоне не читалась, а это главное, ради чего фото и вшито.
+     Теперь слева 0.74, к центру спад до 0.26, а дальше фотография
+     почти не тронута: машина, борт и башня видны целиком.
+     Порог 4.5:1 проверяется замером по пикселям, tools/check_photo_contrast.js. */
   background:linear-gradient(96deg,
-    rgba(43,49,56,0.94) 0%,
-    rgba(43,49,56,0.92) 30%,
-    rgba(43,49,56,0.88) 50%,
-    rgba(43,49,56,0.62) 58%,
-    rgba(43,49,56,0.20) 66%,
-    rgba(43,49,56,0) 74%,
+    rgba(43,49,56,0.74) 0%,
+    rgba(43,49,56,0.62) 26%,
+    rgba(43,49,56,0.46) 46%,
+    rgba(43,49,56,0.26) 58%,
+    rgba(43,49,56,0.10) 70%,
+    rgba(43,49,56,0.02) 82%,
     rgba(43,49,56,0) 100%);
 }
 .hero__bg::after{
@@ -397,9 +399,13 @@ ul{margin:0;padding:0;list-style:none}
 .hero__txt::before{
   content:"";position:absolute;z-index:-1;
   inset:-56px -90px -48px -60px;
-  background:radial-gradient(120% 100% at 26% 46%,
-    rgba(18,21,25,.94) 0%,rgba(18,21,25,.86) 45%,
-    rgba(18,21,25,.55) 72%,rgba(18,21,25,0) 100%);
+  /* Радиус по горизонтали 72%, а не 120%: при 120% эллипс выходил за
+     правый край блока и обрывался на границе x≈858px — поперёк фото
+     шла вертикальная полоса. Теперь градиент гаснет внутри блока,
+     и подложка не видна вовсе. */
+  background:radial-gradient(72% 100% at 22% 46%,
+    rgba(18,21,25,.78) 0%,rgba(18,21,25,.62) 45%,
+    rgba(18,21,25,.34) 72%,rgba(18,21,25,0) 100%);
 }
 
 /* ── быстрый калькулятор ── */
@@ -736,10 +742,10 @@ html.no-speech .sayrow{display:none}
        её и высветляем. Дальше плотно, чтобы мелкий текст держал
        контраст 4.5 поверх снимка. */
     background:linear-gradient(178deg,
-      rgba(43,49,56,0.40) 0%,
-      rgba(43,49,56,0.64) 16%,
-      rgba(43,49,56,0.70) 45%,
-      rgba(43,49,56,0.78) 100%);
+      rgba(43,49,56,0.30) 0%,
+      rgba(43,49,56,0.50) 16%,
+      rgba(43,49,56,0.56) 45%,
+      rgba(43,49,56,0.64) 100%);
   }
   body{font-size:16px}
   .topbar__in{height:64px}
@@ -946,7 +952,7 @@ html.no-speech .sayrow{display:none}
     <symbol id="v-gazel42" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 4,2 метра"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V15h31v7"/><path d="M27 15h31"/><path d="M27 18h31"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="50" cy="24" r="3.4"/></symbol>
     <symbol id="v-gazel56" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 5–6 метров"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V15h32v7"/><path d="M27 15h32"/><path d="M27 15V9a10 6 0 0 1 16 0v6"/><path d="M43 15V9a10 6 0 0 1 16 0v6"/><path d="M27 15h32"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="51" cy="24" r="3.4"/></symbol>
     <symbol id="v-samosval" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Самосвал"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22 30 13 54 6 57 15 33 22z"/><path d="M25 22 33 17"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="50" cy="24" r="3.4"/></symbol>
-    <symbol id="v-evac" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Эвакуатор"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V18h26"/><circle cx="34" cy="15" r="3"/><path d="M53 18 59 11"/><path d="M53 22 59 15"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="46" cy="24" r="3.4"/></symbol>
+    <symbol id="v-evac" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Эвакуатор"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V18h26"/><path d="M29 14.6v-2.2c0-.6.3-1.2.9-1.5l1.5-.7l2-2.3c.4-.5 1-.8 1.6-.8h3c.7 0 1.3.4 1.7 1l1.7 2.4l1.3.7c.6.3.9.9.9 1.6v1.8"/><path d="M29 12.4h14.6"/><circle class="w" cx="32.6" cy="16.2" r="1.8"/><circle class="w" cx="40.4" cy="16.2" r="1.8"/><path d="M53 18 59 11"/><path d="M53 22 59 15"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="46" cy="24" r="3.4"/></symbol>
     <symbol id="v-manip" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Манипулятор"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22h32"/><path d="M34 22V19h7v3"/><path d="M38 19 48 9 56 12"/><path d="M56 12v8c0 2-3 2-3 4"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="48" cy="24" r="3.4"/></symbol>
     <symbol id="v-vyshka" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Автовышка"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22h30"/><path d="M33 22v5M50 22v5"/><path d="M37 22 45 12"/><path d="M42 5h14v8H42z"/><path d="M56 9h6"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="48" cy="24" r="3.4"/></symbol>
   </defs>
@@ -1765,6 +1771,10 @@ html.no-speech .sayrow{display:none}
       .replace(/·/g, ",")
       .replace(/\s*[—–]\s*/g, " — ")
       .replace(/\s+\/\s+/g, " ")
+      /* убираем пробел перед знаком в конце цепочки: разделитель
+         «·» ещё не стал запятой, когда правило стояло в начале,
+         и пробел оставался — «минут , Работаем» */
+      .replace(/\s+([,.;:!?…])/g, "$1")
       .replace(/\s+/g, " ")
       .trim();
   }
@@ -1772,32 +1782,51 @@ html.no-speech .sayrow{display:none}
   /* Заголовок своей секции. На первом экране к нему добавляется
      цена: «Газель с грузчиками от 1 800 рублей» произносится
      одной фразой, а не ценой без названия машины. */
-  function headingFor(btn) {
+  /* Вся секция целиком: заголовок, подзаголовок, названия и
+     описания карточек, шаги, вопросы с ответами.
+     Исключаем иконки (svg), кнопки и элементы с aria-hidden,
+     а также сами кнопки заказа — это действия, а не текст
+     секции. Скрытые элементы тоже пропускаем. */
+  var SKIP = 'svg,button,input,select,textarea,label,.sayrow,[aria-hidden="true"],.btn--order,.btn--ghost,.btn--on-dark,a[href^="tel"],a[href^="#calc"],a[href^="#contacts"]';
+  function sectionText(btn) {
     var sec = btn.closest("section") || document;
-    var h = sec.querySelector("h1, h2");
-    if (!h) return "";
+    var walker = document.createTreeWalker(sec, NodeFilter.SHOW_TEXT, null);
     var parts = [];
-    var t = (h.textContent || "").trim();
-    if (t) parts.push(t);
-    var price = sec.querySelector(".hero__price");
-    if (price) {
-      var kids = price.querySelectorAll("span, small, b");
-      for (var i = 0; i < kids.length; i++) {
-        var v = (kids[i].textContent || "").trim();
-        if (v) parts.push(v);
-      }
-      if (!kids.length) {
-        var pv = (price.textContent || "").trim();
-        if (pv) parts.push(pv);
-      }
+    var node;
+    while ((node = walker.nextNode())) {
+      var t = (node.nodeValue || "").replace(/\s+/g, " ").trim();
+      if (!t) continue;
+      var parent = node.parentElement;
+      if (!parent) continue;
+      if (parent.closest(SKIP)) continue;
+      if (!parent.offsetParent && !parent.getClientRects().length) continue;
+      parts.push(t);
     }
-    return clean(parts.join(" "));
+    return parts.join(" ");
+  }
+
+  /* Режем на фрагменты: Chrome обрывает озвучку примерно через
+     15 секунд, и длинный кусок просто замолчит на середине.
+     200 знаков — это около 13–15 секунд речи. */
+  function splitForSpeech(text) {
+    var max = 200;
+    var out = [];
+    var cur = "";
+    var sentences = text.match(/[^.!?…]+[.!?…]+|\S[^.!?…]*$/g) || [text];
+    for (var i = 0; i < sentences.length; i++) {
+      var s = sentences[i].trim();
+      if (!s) continue;
+      if ((cur + " " + s).length > max && cur) { out.push(cur); cur = s; }
+      else { cur = cur ? cur + " " + s : s; }
+    }
+    if (cur) out.push(cur);
+    return out;
   }
 
   function textFor(btn) {
     var own = btn.getAttribute("data-say");
     if (own) return clean(own);
-    return headingFor(btn);
+    return clean(sectionText(btn));
   }
 
   function stop() {
@@ -1813,23 +1842,34 @@ html.no-speech .sayrow{display:none}
     if (!text) return;
     if (currentBtn === btn) { stop(); return; }
     stop();
-    var u = new SpeechSynthesisUtterance(text.slice(0, 700));
-    u.lang = "ru-RU";
-    u.rate = 1.02;
-    u.onend = stop;
-    u.onerror = stop;
     currentBtn = btn;
     btn.classList.add("is-on");
     btn.setAttribute("aria-pressed", "true");
-    current = u;
-
-    /* Ждём русский голос, если он ещё не пришёл: первое нажатие
-       не должно говорить чужим голосом. Ждём недолго — лучше
-       начать читать с lang ru-RU, чем молчать полторы секунды. */
-    whenVoiceReady().then(function (v) {
-      if (current !== u) return;
-      if (v) u.voice = v;
+    /* токен отмены: пока current === token, очередь играет */
+    var token = {};
+    current = token;
+    var chunks = splitForSpeech(text);
+    var voice = null;
+    var i = 0;
+    function next() {
+      if (current !== token || i >= chunks.length) { stop(); return; }
+      var u = new SpeechSynthesisUtterance(chunks[i++]);
+      u.lang = "ru-RU";
+      u.rate = 1.02;
+      /* голос подставляем каждому фрагменту: их много, а голос
+         один, и без него русский текст читается с чужой
+         интонацией */
+      if (voice) u.voice = voice;
+      u.onend = function () { if (current === token) setTimeout(next, 140); };
+      u.onerror = function () { if (current === token) stop(); };
       try { speechSynthesis.speak(u); } catch (e) { stop(); }
+    }
+    /* Голос может прийти не сразу; раньше без него фрагмент
+       молчал. Ждём, но не дольше 400 мс. */
+    whenVoiceReady().then(function (v) {
+      if (current !== token) return;
+      voice = v || null;
+      next();
     });
   }
 
