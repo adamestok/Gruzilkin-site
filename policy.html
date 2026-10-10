@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791638876783">
+<meta name="gruzilkin-build" content="1791644395662">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -618,6 +618,63 @@ ul{margin:0;padding:0;list-style:none}
   .loaders__note{flex-direction:column;align-items:stretch;text-align:center}
   .loaders__note .btn{width:100%}
 }
+
+/* ── помощник и иконки связи справа снизу ──
+   На телефоне панель «Позвонить / Оформить заказ» уже есть внизу,
+   поэтому кнопку телефона там прячем и поднимаем остальные три
+   над панелью, чтобы они не перекрывались. */
+.dock{position:fixed;right:20px;bottom:20px;z-index:1040;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.dock__col{display:flex;flex-direction:column;gap:10px}
+.dock__b{
+  width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  box-shadow:0 8px 22px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);
+  transition:transform .2s var(--ease),filter .2s;
+}
+.dock__b:hover{transform:translateY(-2px) scale(1.04);filter:brightness(1.06)}
+.dock__b svg{width:26px;height:26px;fill:var(--white)}
+.dock__b--wa{background:#25D366}
+.dock__b--tg{background:#2AABEE}
+.dock__b--tel{background:var(--accent);border-color:var(--black)}
+.dock__b--tel svg{fill:var(--black)}
+.dock__b--bot{background:var(--black)}
+.dock__b--bot:hover{background:#23282E}
+
+.bot{
+  width:min(380px,calc(100vw - 32px));height:min(560px,70vh);
+  background:var(--white);border-radius:var(--r-lg);border:1px solid var(--line);
+  box-shadow:0 24px 60px rgba(0,0,0,.34);display:flex;flex-direction:column;overflow:hidden;
+}
+.bot__head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--black);color:var(--white)}
+.bot__ttl{font-weight:800;font-size:15px;line-height:1.25}.bot__ttl small{display:block;font-weight:400;font-size:12px;color:var(--gray-2);margin-top:2px}
+.bot__x{margin-left:auto;width:34px;height:34px;border-radius:10px;background:#3A4149;color:var(--white);font-size:20px;line-height:1;cursor:pointer}
+.bot__log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--white)}
+.bot__m{max-width:86%;padding:10px 13px;border-radius:14px;font-size:14.5px;line-height:1.5}
+.bot__m--b{background:#F3F4F6;color:var(--black);align-self:flex-start;border-bottom-left-radius:4px}
+.bot__m--u{background:var(--accent);color:var(--black);align-self:flex-end;border-bottom-right-radius:4px;font-weight:600}
+.bot__m b{font-weight:800}
+.bot__m a{color:var(--black);font-weight:700;border-bottom:1.5px solid var(--accent)}
+.bot__m ul{margin:6px 0 0;padding-left:18px}
+.bot__m li{margin-bottom:3px}
+.bot__chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 10px}
+.bot__chips:empty{display:none}
+.bot__chip{border:1.5px solid var(--black);background:var(--white);color:var(--black);border-radius:999px;padding:8px 13px;font-size:13.5px;font-weight:600;cursor:pointer;min-height:36px}
+.bot__chip:hover{background:var(--black);color:var(--white)}
+.bot__form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.bot__in{flex:1;min-width:0;min-height:46px;border:1.5px solid var(--line);border-radius:12px;padding:0 13px;font-size:15px;font-family:inherit}
+.bot__in:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--black)}
+.bot__send{width:46px;min-height:46px;border-radius:12px;background:var(--accent);border:1.5px solid var(--black);cursor:pointer;display:grid;place-items:center}
+.bot__send svg{width:20px;height:20px;fill:var(--black)}
+@media (max-width:700px){
+  .dock{right:12px;bottom:86px}
+  .dock__b{width:48px;height:48px}
+  .dock__b--tel{display:none}
+  .bot{width:calc(100vw - 24px);height:min(66vh,520px)}
+}
+
+/* Помощник появляется только вместе со своим скриптом: без него
+   кнопка была бы мёртвой, а это хуже, чем её отсутствие. */
+.dock{display:none}
+html.has-bot .dock{display:flex}
 
 /* ── отзывы ── */
 .revs{display:grid;gap:16px}

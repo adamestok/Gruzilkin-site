@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791638876783">
+<meta name="gruzilkin-build" content="1791644395662">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -618,6 +618,63 @@ ul{margin:0;padding:0;list-style:none}
   .loaders__note{flex-direction:column;align-items:stretch;text-align:center}
   .loaders__note .btn{width:100%}
 }
+
+/* ── помощник и иконки связи справа снизу ──
+   На телефоне панель «Позвонить / Оформить заказ» уже есть внизу,
+   поэтому кнопку телефона там прячем и поднимаем остальные три
+   над панелью, чтобы они не перекрывались. */
+.dock{position:fixed;right:20px;bottom:20px;z-index:1040;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.dock__col{display:flex;flex-direction:column;gap:10px}
+.dock__b{
+  width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  box-shadow:0 8px 22px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);
+  transition:transform .2s var(--ease),filter .2s;
+}
+.dock__b:hover{transform:translateY(-2px) scale(1.04);filter:brightness(1.06)}
+.dock__b svg{width:26px;height:26px;fill:var(--white)}
+.dock__b--wa{background:#25D366}
+.dock__b--tg{background:#2AABEE}
+.dock__b--tel{background:var(--accent);border-color:var(--black)}
+.dock__b--tel svg{fill:var(--black)}
+.dock__b--bot{background:var(--black)}
+.dock__b--bot:hover{background:#23282E}
+
+.bot{
+  width:min(380px,calc(100vw - 32px));height:min(560px,70vh);
+  background:var(--white);border-radius:var(--r-lg);border:1px solid var(--line);
+  box-shadow:0 24px 60px rgba(0,0,0,.34);display:flex;flex-direction:column;overflow:hidden;
+}
+.bot__head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--black);color:var(--white)}
+.bot__ttl{font-weight:800;font-size:15px;line-height:1.25}.bot__ttl small{display:block;font-weight:400;font-size:12px;color:var(--gray-2);margin-top:2px}
+.bot__x{margin-left:auto;width:34px;height:34px;border-radius:10px;background:#3A4149;color:var(--white);font-size:20px;line-height:1;cursor:pointer}
+.bot__log{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--white)}
+.bot__m{max-width:86%;padding:10px 13px;border-radius:14px;font-size:14.5px;line-height:1.5}
+.bot__m--b{background:#F3F4F6;color:var(--black);align-self:flex-start;border-bottom-left-radius:4px}
+.bot__m--u{background:var(--accent);color:var(--black);align-self:flex-end;border-bottom-right-radius:4px;font-weight:600}
+.bot__m b{font-weight:800}
+.bot__m a{color:var(--black);font-weight:700;border-bottom:1.5px solid var(--accent)}
+.bot__m ul{margin:6px 0 0;padding-left:18px}
+.bot__m li{margin-bottom:3px}
+.bot__chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 10px}
+.bot__chips:empty{display:none}
+.bot__chip{border:1.5px solid var(--black);background:var(--white);color:var(--black);border-radius:999px;padding:8px 13px;font-size:13.5px;font-weight:600;cursor:pointer;min-height:36px}
+.bot__chip:hover{background:var(--black);color:var(--white)}
+.bot__form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.bot__in{flex:1;min-width:0;min-height:46px;border:1.5px solid var(--line);border-radius:12px;padding:0 13px;font-size:15px;font-family:inherit}
+.bot__in:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--black)}
+.bot__send{width:46px;min-height:46px;border-radius:12px;background:var(--accent);border:1.5px solid var(--black);cursor:pointer;display:grid;place-items:center}
+.bot__send svg{width:20px;height:20px;fill:var(--black)}
+@media (max-width:700px){
+  .dock{right:12px;bottom:86px}
+  .dock__b{width:48px;height:48px}
+  .dock__b--tel{display:none}
+  .bot{width:calc(100vw - 24px);height:min(66vh,520px)}
+}
+
+/* Помощник появляется только вместе со своим скриптом: без него
+   кнопка была бы мёртвой, а это хуже, чем её отсутствие. */
+.dock{display:none}
+html.has-bot .dock{display:flex}
 
 /* ── отзывы ── */
 .revs{display:grid;gap:16px}
@@ -1723,6 +1780,39 @@ html.no-speech .sayrow{display:none}
     </a>
   </div>
 </div>
+\n
+<!-- ══════════ ПОМОЩНИК И ИКОНКИ СВЯЗИ ══════════ -->
+<div class="dock" id="dock">
+  <div class="dock__col">
+    <a class="dock__b dock__b--wa" href="https://wa.me/79033695311" target="_blank" rel="noopener" aria-label="WhatsApp — написать в WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2Zm0 1.9a8.1 8.1 0 1 1-4.1 15.1l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9Zm-3.6 4c-.2 0-.5 0-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.7 2.7 4.3 3.7 2.1.8 2.6.6 3 .6.6 0 1.6-.7 1.9-1.3.2-.7.2-1.2.1-1.4l-.6-.3-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.4l-.7-1.6c-.2-.4-.4-.4-.6-.4Z"/></svg>
+    </a>
+    <a class="dock__b dock__b--tg" href="https://t.me/gruzilkin56" target="_blank" rel="noopener" aria-label="Telegram — написать в Telegram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 4.3 2.9 11.5c-1.1.4-1.1 1.1-.2 1.4l4.6 1.4 1.8 5.4c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3-14c.3-1.2-.5-1.8-1.4-1.4ZM8.7 14.1l9.6-6.4c.4-.3.8-.1.5.2l-8 7.2-.3 3.3-1.8-4.3Z"/></svg>
+    </a>
+    <a class="dock__b dock__b--tel" href="tel:+73532432424" aria-label="Позвонить 8 (3532) 43-24-24">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h3l1.5 3.8-2 1.3a11.5 11.5 0 0 0 5.2 5.2l1.3-2L19 12.8v3c0 1-.8 1.7-1.7 1.7C10 17.5 5.5 13 5.5 5.7 5.5 4.8 6.2 4 6.6 3Z"/></svg>
+    </a>
+    <button class="dock__b dock__b--bot" type="button" id="botOpen" aria-expanded="false" aria-controls="botPanel" aria-label="Открыть помощника">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9c0 1.7.5 3.2 1.3 4.5L3 21l4.7-1.2A9 9 0 1 0 12 3Zm-3.6 8.4a1.3 1.3 0 1 1 2.6 0 1.3 1.3 0 0 1-2.6 0Zm3.6 0a1.3 1.3 0 1 1 2.6 0 1.3 1.3 0 0 1-2.6 0Zm3.6 0a1.3 1.3 0 1 1 2.6 0 1.3 1.3 0 0 1-2.6 0Z"/></svg>
+    </button>
+  </div>
+
+  <div class="bot" id="botPanel" role="dialog" aria-label="Помощник Грузилкин" aria-modal="false" hidden>
+    <div class="bot__head">
+      <div class="bot__ttl">Помощник Грузилкин<small>отвечает по данным компании</small></div>
+      <button class="bot__x" type="button" id="botClose" aria-label="Закрыть помощника">×</button>
+    </div>
+    <div class="bot__log" id="botLog" role="log" aria-live="polite"></div>
+    <div class="bot__chips" id="botChips"></div>
+    <form class="bot__form" id="botForm">
+      <input class="bot__in" id="botIn" type="text" placeholder="Напишите вопрос…" aria-label="Вопрос помощнику" autocomplete="off">
+      <button class="bot__send" type="submit" aria-label="Отправить">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l3 6.5 8 2-8 2-3 6.5Z"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
 
 <script>
 (function () {
@@ -2055,5 +2145,273 @@ html.no-speech .sayrow{display:none}
     tick();
     setInterval(tick, 30000);
   }
+})();
+
+
+
+</script>
+
+<!-- Помощник: отвечает по данным компании, собирает заявку -->
+<script>
+(function () {
+  "use strict";
+
+  var DATA = {
+    tel: "+73532432424",
+    telText: "8 (3532) 43-24-24",
+    wa: "79033695311",
+    tg: "gruzilkin56",
+    addr: "г. Оренбург, проспект Братьев Коростелёвых, 179/4",
+    hours: "8:30 — 23:30",
+    fleet: [
+      ["Газель 3 м", "от 1 800 ₽/час"],
+      ["Газель 4,2 м", "от 2 000 ₽/час"],
+      ["Газель 5–6 м", "от 2 200 ₽/час"],
+      ["Самосвал", "от 3 500 ₽/час"],
+      ["Манипулятор", "от 4 050 ₽/час"],
+      ["Эвакуатор", "от 4 200 ₽/час"],
+      ["Автовышка", "от 4 350 ₽/час"]
+    ],
+    loader: "от 900 ₽/час за человека"
+  };
+
+  var PRICE_LIST =
+    "<b>Прайс на машины, за час работы:</b><ul>" +
+    DATA.fleet.map(function (f) { return "<li>" + f[0] + " — " + f[1] + "</li>"; }).join("") +
+    "<li>Грузчик — " + DATA.loader + "</li></ul>" +
+    "Первый час по городу оплачивается полностью, дальше поминутно по 15 минут. " +
+    "Каждый 10-й накопленный час газели или грузчика — бесплатно, в пределах Оренбурга и области.";
+
+  /* Вопросы. k — ключевые слова, a — ответ, c — быстрые кнопки после ответа.
+     a === null означает особый сценарий: оформление заявки. */
+  var INTENTS = [
+    { k: ["цена", "стоимост", "сколько стоит", "прайс", "почем", "почём", "тариф", "расценк", "деньг"],
+      a: PRICE_LIST, c: ["Оформить заказ", "Какие машины есть?"] },
+    { k: ["машина", "машин", "автопарк", "техник", "что возит", "какие машины", "фур", "трал", "бычок", "фура"],
+      a: "В парке 100+ машин, 13 видов транспорта:<ul>" +
+        DATA.fleet.map(function (f) { return "<li>" + f[0] + "</li>"; }).join("") +
+        "</ul>Не нашли нужную машину — напишите диспетчеру, подберём под груз.",
+      c: ["Сколько стоит доставка?", "Оформить заказ"] },
+    { k: ["газел", "газель"],
+      a: "Газели трёх длин: 3 м — от 1 800 ₽/час, 4,2 м — от 2 000 ₽/час, 5–6 м — от 2 200 ₽/час. Есть тентованные и с бортом. Подача от 15 минут.",
+      c: ["Грузчики есть?", "Оформить заказ"] },
+    { k: ["грузчик", "грузчики", "такелаж", "разбор", "сборк", "перенос", "подъём", "подъем", "упаковк", "уборк"],
+      a: "Грузчики — " + DATA.loader + ". Они в штате. Упаковка, разбор и сборка мебели, погрузка и разгрузка, перенос по этажу, вывоз старой мебели и строительного мусора.",
+      c: ["Оформить заказ", "Сколько стоит доставка?"] },
+    { k: ["подач", "сколько ждать", "быстро", "срочно", "долго ли", "когда приед"],
+      a: "Подача машины от 15 минут. Точное время по вашему адресу диспетчер называет сразу при оформлении заявки.",
+      c: ["Оформить заказ"] },
+    { k: ["ноч", "круглосуточ", "часы", "график", "когда работаете", "работаете ли", "работаете до", "выходн", "праздник"],
+      a: "Диспетчерская работает с " + DATA.hours + ", перевозки бывают и ночные. Первый час по городу оплачивается полностью, дальше поминутно по 15 минут.",
+      c: ["Оформить заказ"] },
+    { k: ["адрес", "где вы", "находитесь", "местонахожд", "как доехать", "карта"],
+      a: "Мы находимся: " + DATA.addr + ".",
+      c: ["Позвонить", "Оформить заказ"] },
+    { k: ["телефон", "позвонить", "звонок", "номер", "связаться", "написать"],
+      a: "Телефон диспетчера: <b>" + DATA.telText + "</b>. Есть WhatsApp и Telegram — кнопки справа внизу.",
+      c: ["Оформить заказ"] },
+    { k: ["договор", "юрлиц", "юридическ", "организац", "ндс", "безнал", "счет", "счёт", "офис", "компан"],
+      a: "Работаем с юридическими лицами: договор, безналичный расчёт, НДС и без НДС, закрывающие документы. Для регулярных перевозок — подача по графику.",
+      c: ["Оформить заказ", "Сколько стоит доставка?"] },
+    { k: ["страхов", "застрахов", "безопасн", "сохранност"],
+      a: "Бесплатная страховка груза включена в заказ. Мебель крепим ремнями внутри машины.",
+      c: ["Оформить заказ"] },
+    { k: ["скидк", "бонус", "дешевле", "выгодн", "десятый", "10-й"],
+      a: "Бонусная система: каждый 10-й накопленный час работы газели или грузчика — бесплатно, в пределах Оренбурга и области, при почасовом заказе.",
+      c: ["Оформить заказ"] },
+    { k: ["отзыв", "рейтинг", "доверя", "вас рекоменд"],
+      a: "На Яндекс Картах рейтинг 4,8 (191 оценка), в 2ГИС — 4,7 (122 оценки). Работают грузчики и водители из штата.",
+      c: ["Оформить заказ"] },
+    { k: ["оплат", "картой", "наличн", "как платить"],
+      a: "Оплата наличными или по счёту для юридических лиц. Тариф фиксированный до начала работы.",
+      c: ["Оформить заказ"] },
+    { k: ["привет", "здравствуй", "хай", "добрый", "доброе", "здорово"],
+      a: "Здравствуйте! Я помощник Грузилкин. Знаю цены, машины, грузчиков и условия работы. Спросите о чём угодно или скажите «Оформить заказ».",
+      c: ["Сколько стоит доставка?", "Какие машины есть?", "Грузчики есть?"] },
+    { k: ["заказ", "оформит", "заявк", "вызвать", "нужна машина", "подать"],
+      a: null }
+  ];
+
+  var CHIPS_MAIN = ["Сколько стоит доставка?", "Какие машины есть?", "Грузчики есть?",
+                    "Как быстро приедете?", "Работаете с юрлицами?", "Оформить заказ"];
+
+  var panel = document.getElementById("botPanel");
+  var openBtn = document.getElementById("botOpen");
+  var closeBtn = document.getElementById("botClose");
+  var log = document.getElementById("botLog");
+  var chipsBox = document.getElementById("botChips");
+  var form = document.getElementById("botForm");
+  var input = document.getElementById("botIn");
+  if (!panel || !openBtn || !log || !form || !input) return;
+
+  var state = null;
+  var started = false;
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+
+  function scroll() { log.scrollTop = log.scrollHeight; }
+
+  function say(html, from) {
+    var m = el("div", "bot__m bot__m--" + (from === "u" ? "u" : "b"), html);
+    log.appendChild(m);
+    scroll();
+    return m;
+  }
+
+  function chips(list) {
+    chipsBox.innerHTML = "";
+    (list || []).forEach(function (t) {
+      var b = el("button", "bot__chip", t);
+      b.type = "button";
+      b.addEventListener("click", function () { ask(t); });
+      chipsBox.appendChild(b);
+    });
+  }
+
+  function norm(s) {
+    return (s || "").toLowerCase().replace(/ё/g, "е")
+      .replace(/[^a-zа-я0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  /* Побеждает не первый подходящий вопрос, а тот, где совпало
+     больше слов. Иначе «работаете с юрлицами» уходило в ответ
+     про часы: слово «работаете» находилось раньше слова «юрлиц». */
+  function findIntent(q) {
+    var n = norm(q);
+    if (!n) return null;
+    var best = null, bestScore = 0;
+    for (var i = 0; i < INTENTS.length; i++) {
+      var score = 0;
+      for (var j = 0; j < INTENTS[i].k.length; j++) {
+        if (n.indexOf(norm(INTENTS[i].k[j])) !== -1) score++;
+      }
+      if (score > bestScore) { bestScore = score; best = INTENTS[i]; }
+    }
+    return best;
+  }
+
+  var ORDER_STEPS = [
+    "Что нужно перевезти? Напишите коротко: например, «диван и коробки, из Оренбурга в Советский».",
+    "Откуда и куда? Напишите адрес погрузки и адрес доставки.",
+    "Оставьте телефон, по нему перезвонит диспетчер."
+  ];
+
+  function startOrder() {
+    state = { step: 0, what: "", addr: "", phone: "" };
+    say(ORDER_STEPS[0]);
+    chips(["Отмена"]);
+  }
+
+  function orderStep(text) {
+    var t = (text || "").trim();
+    if (norm(t) === "отмена" || norm(t) === "отменать") {
+      state = null;
+      say("Хорошо, заявку не оформляю. Спросите что-нибудь ещё.", "u");
+      chips(CHIPS_MAIN);
+      return;
+    }
+    if (state.step === 0) {
+      if (t.length < 2) { say("Напишите пару слов — что перевезти.", "u"); return; }
+      state.what = t;
+    } else if (state.step === 1) {
+      if (t.length < 4) { say("Нужен адрес: откуда и куда.", "u"); return; }
+      state.addr = t;
+    } else if (state.step === 2) {
+      var digits = t.replace(/\D/g, "");
+      if (digits.length < 10) {
+        say("Похоже, номер не полный. Напишите телефон целиком, например +7 900 000-00-00.", "u");
+        return;
+      }
+      state.phone = t;
+      finishOrder();
+      return;
+    }
+    state.step++;
+    if (state.step < ORDER_STEPS.length) {
+      say(ORDER_STEPS[state.step], "u");
+      chips(["Отмена"]);
+    }
+  }
+
+  function finishOrder() {
+    var msg = "Заявка с сайта Грузилкин\n" +
+      "Что перевезти: " + state.what + "\n" +
+      "Адрес: " + state.addr + "\n" +
+      "Телефон: " + state.phone;
+
+    say("Заявка готова. Куда её передать?", "u");
+    var box = el("div", "bot__m bot__m--b");
+    box.innerHTML =
+      "<b>Что перевезти:</b> " + state.what + "<br>" +
+      "<b>Адрес:</b> " + state.addr + "<br>" +
+      "<b>Телефон:</b> " + state.phone + "<br><br>" +
+      '<a href="https://wa.me/' + DATA.wa + '?text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">Отправить в WhatsApp</a> · ' +
+      '<a href="https://t.me/share/url?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(msg) + '" target="_blank" rel="noopener">В Telegram</a> · ' +
+      '<a href="tel:' + DATA.tel + '">Позвонить ' + DATA.telText + "</a>";
+    log.appendChild(box);
+    scroll();
+    chips(["Оформить заказ", "Сколько стоит доставка?"]);
+    state = null;
+  }
+
+  function answer(q) {
+    var it = findIntent(q);
+    if (!it) {
+      say("Точного ответа у меня нет — я не знаю этой темы. Напишите диспетчеру, ответят по делу:", "u");
+      say('<a href="https://wa.me/' + DATA.wa + '">WhatsApp</a> · <a href="https://t.me/' + DATA.tg + '">Telegram</a> · <a href="tel:' + DATA.tel + '">' + DATA.telText + "</a>");
+      chips(CHIPS_MAIN);
+      return;
+    }
+    if (it.a === null) { startOrder(); return; }
+    say(it.a);
+    chips(it.c || CHIPS_MAIN);
+  }
+
+  function ask(text) {
+    if (state) { say(text, "u"); orderStep(text); return; }
+    say(text, "u");
+    answer(text);
+  }
+
+  function openPanel(first) {
+    panel.hidden = false;
+    openBtn.setAttribute("aria-expanded", "true");
+    if (first && !started) {
+      started = true;
+      say("Здравствуйте! Я помощник Грузилкин. Знаю цены, машины, грузчиков, подачу и условия работы. Спросите — отвечу.");
+      chips(CHIPS_MAIN);
+    }
+    try { input.focus(); } catch (e) {}
+  }
+
+  function closePanel() {
+    panel.hidden = true;
+    openBtn.setAttribute("aria-expanded", "false");
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener("click", function () {
+    if (panel.hidden) openPanel(true); else closePanel();
+  });
+  closeBtn.addEventListener("click", closePanel);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !panel.hidden) closePanel();
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = input.value.trim();
+    if (!v) return;
+    input.value = "";
+    ask(v);
+  });
+
+  /* кнопки показываются только вместе со скриптом: без него они были бы мёртвыми */
+  document.documentElement.classList.add("has-bot");
 })();
 </script>
