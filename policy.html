@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791647021536">
+<meta name="gruzilkin-build" content="1791647366656">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -697,11 +697,11 @@ html.has-bot .dock{display:block}
 .bot__send svg{width:20px;height:20px;fill:var(--black)}
 
 @media (max-width:700px){
-  .dock{right:12px;bottom:86px}
+  .dock{right:12px;bottom:86px;z-index:1090}
   .dock__b{width:48px;height:48px}
   .dock__b--tel{display:none}
   .dock__tip{display:none}
-  .bot{right:12px;bottom:86px;width:calc(100vw - 24px);height:min(66vh,520px);z-index:1060}
+  .bot{right:12px;bottom:86px;width:calc(100vw - 24px);height:min(66vh,520px);z-index:1100}
 }
 
 /* ── галерея компании ── */
@@ -974,7 +974,7 @@ html.no-speech .sayrow{display:none}
   /* нижняя панель: она же освобождает место у плавающих кнопок */
   .mobar{display:block}
   body{padding-bottom:68px}
-  .to-top,.bot{display:none}
+  .to-top{display:none}
 
   .foot{padding-bottom:20px}
   .foot__list a{min-height:44px}
