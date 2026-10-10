@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791644395662">
+<meta name="gruzilkin-build" content="1791645276945">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -623,12 +623,13 @@ ul{margin:0;padding:0;list-style:none}
    На телефоне панель «Позвонить / Оформить заказ» уже есть внизу,
    поэтому кнопку телефона там прячем и поднимаем остальные три
    над панелью, чтобы они не перекрывались. */
-.dock{position:fixed;right:20px;bottom:20px;z-index:1040;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.dock{position:fixed;right:20px;bottom:14px;z-index:1040;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .dock__col{display:flex;flex-direction:column;gap:10px}
 .dock__b{
   width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
   box-shadow:0 8px 22px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);
   transition:transform .2s var(--ease),filter .2s;
+  position:relative;
 }
 .dock__b:hover{transform:translateY(-2px) scale(1.04);filter:brightness(1.06)}
 .dock__b svg{width:26px;height:26px;fill:var(--white)}
@@ -636,6 +637,8 @@ ul{margin:0;padding:0;list-style:none}
 .dock__b--tg{background:#2AABEE}
 .dock__b--tel{background:var(--accent);border-color:var(--black)}
 .dock__b--tel svg{fill:var(--black)}
+.dock__b--max{background:var(--accent);border-color:var(--black)}
+.dock__b--max svg{fill:var(--white)}
 .dock__b--bot{background:var(--black)}
 .dock__b--bot:hover{background:#23282E}
 
@@ -675,6 +678,21 @@ ul{margin:0;padding:0;list-style:none}
    кнопка была бы мёртвой, а это хуже, чем её отсутствие. */
 .dock{display:none}
 html.has-bot .dock{display:flex}
+
+/* ── галерея компании ── */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gal__i{margin:0;overflow:hidden;border-radius:var(--r);line-height:0}
+.gal__i img{width:100%;height:100%;object-fit:cover;transition:transform .35s var(--ease)}
+.gal__i:hover img{transform:scale(1.04)}
+.gal__i--lg{grid-column:span 2;grid-row:span 2}
+.gal__i--wide{grid-column:span 2}
+.gal__i--tall{grid-row:span 2}
+@media(max-width:700px){
+  .gal{grid-template-columns:repeat(2,1fr);gap:8px}
+  .gal__i--lg{grid-column:span 2;grid-row:span 1}
+  .gal__i--wide{grid-column:span 2}
+  .gal__i--tall{grid-row:span 1}
+}
 
 /* ── отзывы ── */
 .revs{display:grid;gap:16px}

@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791644395662">
+<meta name="gruzilkin-build" content="1791645276945">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -623,12 +623,13 @@ ul{margin:0;padding:0;list-style:none}
    На телефоне панель «Позвонить / Оформить заказ» уже есть внизу,
    поэтому кнопку телефона там прячем и поднимаем остальные три
    над панелью, чтобы они не перекрывались. */
-.dock{position:fixed;right:20px;bottom:20px;z-index:1040;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.dock{position:fixed;right:20px;bottom:14px;z-index:1040;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .dock__col{display:flex;flex-direction:column;gap:10px}
 .dock__b{
   width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
   box-shadow:0 8px 22px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);
   transition:transform .2s var(--ease),filter .2s;
+  position:relative;
 }
 .dock__b:hover{transform:translateY(-2px) scale(1.04);filter:brightness(1.06)}
 .dock__b svg{width:26px;height:26px;fill:var(--white)}
@@ -636,6 +637,8 @@ ul{margin:0;padding:0;list-style:none}
 .dock__b--tg{background:#2AABEE}
 .dock__b--tel{background:var(--accent);border-color:var(--black)}
 .dock__b--tel svg{fill:var(--black)}
+.dock__b--max{background:var(--accent);border-color:var(--black)}
+.dock__b--max svg{fill:var(--white)}
 .dock__b--bot{background:var(--black)}
 .dock__b--bot:hover{background:#23282E}
 
@@ -675,6 +678,21 @@ ul{margin:0;padding:0;list-style:none}
    кнопка была бы мёртвой, а это хуже, чем её отсутствие. */
 .dock{display:none}
 html.has-bot .dock{display:flex}
+
+/* ── галерея компании ── */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gal__i{margin:0;overflow:hidden;border-radius:var(--r);line-height:0}
+.gal__i img{width:100%;height:100%;object-fit:cover;transition:transform .35s var(--ease)}
+.gal__i:hover img{transform:scale(1.04)}
+.gal__i--lg{grid-column:span 2;grid-row:span 2}
+.gal__i--wide{grid-column:span 2}
+.gal__i--tall{grid-row:span 2}
+@media(max-width:700px){
+  .gal{grid-template-columns:repeat(2,1fr);gap:8px}
+  .gal__i--lg{grid-column:span 2;grid-row:span 1}
+  .gal__i--wide{grid-column:span 2}
+  .gal__i--tall{grid-row:span 1}
+}
 
 /* ── отзывы ── */
 .revs{display:grid;gap:16px}
@@ -989,7 +1007,7 @@ html.no-speech .sayrow{display:none}
 </head>
 <body>
 
-﻿<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M2 7h11v9H2z"/><path d="M13 10h4l4 3v3h-8z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/>
@@ -1540,6 +1558,46 @@ html.no-speech .sayrow{display:none}
     </div>
   </div>
 </section>
+<!-- ══════════ ГАЛЕРЕЯ КОМПАНИИ ══════════ -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">Фото</span>
+      <h2>Галерея Компании</h2>
+      <p>Настоящие фотографии нашей работы, машин и команды.</p>
+    </div>
+
+    <div class="gal">
+      <figure class="gal__i gal__i--lg">
+        <img src="https://static.tildacdn.com/tild6632-3232-4866-a361-336537376465/Frame_69.png" width="1150" height="1150" loading="lazy" decoding="async" alt="Грузовое такси Грузилкин — команда и машины компании">
+      </figure>
+      <figure class="gal__i">
+        <img src="https://static.tildacdn.com/tild6131-3339-4366-b766-363739303234/Frame_70.png" width="564" height="564" loading="lazy" decoding="async" alt="Газель компании на выезде">
+      </figure>
+      <figure class="gal__i">
+        <img src="https://static.tildacdn.com/tild3038-3234-4432-b532-373932626435/Frame_71.png" width="564" height="564" loading="lazy" decoding="async" alt="Погрузка мебели в газель">
+      </figure>
+      <figure class="gal__i">
+        <img src="https://static.tildacdn.com/tild3639-3566-4564-b163-303836343339/Frame_72.png" width="564" height="564" loading="lazy" decoding="async" alt="Грузчики за работой">
+      </figure>
+      <figure class="gal__i">
+        <img src="https://static.tildacdn.com/tild6535-6465-4966-b135-663335363336/Frame_73.png" width="564" height="564" loading="lazy" decoding="async" alt="Перевозка техники">
+      </figure>
+      <figure class="gal__i">
+        <img src="https://static.tildacdn.com/tild3735-3433-4935-b561-383034333465/Frame_75.png" width="564" height="564" loading="lazy" decoding="async" alt="Спецтехника компании">
+      </figure>
+      <figure class="gal__i">
+        <img src="https://static.tildacdn.com/tild3937-3530-4238-a630-313761343132/Frame_76.png" width="564" height="564" loading="lazy" decoding="async" alt="Команда грузчиков">
+      </figure>
+      <figure class="gal__i gal__i--wide">
+        <img src="https://static.tildacdn.com/tild3664-6632-4935-a134-376633346164/Frame_77.png" width="1150" height="750" loading="lazy" decoding="async" alt="Автопарк компании Грузилкин">
+      </figure>
+      <figure class="gal__i gal__i--tall">
+        <img src="https://static.tildacdn.com/tild3633-3662-4161-a539-623334626431/Frame_74.png" width="1150" height="1336" loading="lazy" decoding="async" alt="Грузилкин — офис и склад компании">
+      </figure>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════ ДЛЯ БИЗНЕСА ══════════ -->
 <section class="sec biz" id="biz">
@@ -1784,16 +1842,20 @@ html.no-speech .sayrow{display:none}
 <!-- ══════════ ПОМОЩНИК И ИКОНКИ СВЯЗИ ══════════ -->
 <div class="dock" id="dock">
   <div class="dock__col">
-    <a class="dock__b dock__b--wa" href="https://wa.me/79033695311" target="_blank" rel="noopener" aria-label="WhatsApp — написать в WhatsApp">
+    <a class="dock__b dock__b--wa" href="https://wa.me/79033695311" target="_blank" rel="noopener" aria-label="WhatsApp — написать в WhatsApp" title="Написать в WhatsApp">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.4A10 10 0 1 0 12 2Zm0 1.9a8.1 8.1 0 1 1-4.1 15.1l-.3-.2-3 .8.8-2.9-.2-.3A8.1 8.1 0 0 1 12 3.9Zm-3.6 4c-.2 0-.5 0-.7.4-.3.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.7 2.7 4.3 3.7 2.1.8 2.6.6 3 .6.6 0 1.6-.7 1.9-1.3.2-.7.2-1.2.1-1.4l-.6-.3-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.4-.5.3-.5v-.4l-.7-1.6c-.2-.4-.4-.4-.6-.4Z"/></svg>
     </a>
-    <a class="dock__b dock__b--tg" href="https://t.me/gruzilkin56" target="_blank" rel="noopener" aria-label="Telegram — написать в Telegram">
+    <a class="dock__b dock__b--tg" href="https://t.me/gruzilkin56" target="_blank" rel="noopener" aria-label="Telegram — написать в Telegram" title="Написать в Telegram">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 4.3 2.9 11.5c-1.1.4-1.1 1.1-.2 1.4l4.6 1.4 1.8 5.4c.2.6.1.8.7.8.5 0 .7-.2 1-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3-14c.3-1.2-.5-1.8-1.4-1.4ZM8.7 14.1l9.6-6.4c.4-.3.8-.1.5.2l-8 7.2-.3 3.3-1.8-4.3Z"/></svg>
     </a>
-    <a class="dock__b dock__b--tel" href="tel:+73532432424" aria-label="Позвонить 8 (3532) 43-24-24">
+    <a class="dock__b dock__b--tel" href="tel:+73532432424" aria-label="Позвонить 8 (3532) 43-24-24" title="Позвонить 8 (3532) 43-24-24">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h3l1.5 3.8-2 1.3a11.5 11.5 0 0 0 5.2 5.2l1.3-2L19 12.8v3c0 1-.8 1.7-1.7 1.7C10 17.5 5.5 13 5.5 5.7 5.5 4.8 6.2 4 6.6 3Z"/></svg>
     </a>
-    <button class="dock__b dock__b--bot" type="button" id="botOpen" aria-expanded="false" aria-controls="botPanel" aria-label="Открыть помощника">
+    <button class="dock__b dock__b--max" type="button" aria-label="Грузилкин — маскот компании" title="Грузилкин">
+      <!-- Голова быка — маскот компании -->
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5C3 6 4 5 5 5.5c1 .5 2 2 3 3l1 .5h6l1-.5c1-1 2-2.5 3-3C20 5 21 6 21 7.5c0 1-.3 2-1 2.5.5.8.8 1.8.8 3 0 3.2-3 5.5-8.8 5.5S3.2 16.2 3.2 13c0-1.2.3-2.2.8-3-.7-.5-1-1.5-1-2.5Z"/><circle cx="9.5" cy="11.5" r="1.2" fill="var(--black)"/><circle cx="14.5" cy="11.5" r="1.2" fill="var(--black)"/><ellipse cx="12" cy="15" rx="2.5" ry="1.5" fill="var(--black)" opacity=".3"/><circle cx="10.5" cy="15" r=".6" fill="var(--black)"/><circle cx="13.5" cy="15" r=".6" fill="var(--black)"/></svg>
+    </button>
+    <button class="dock__b dock__b--bot" type="button" id="botOpen" aria-expanded="false" aria-controls="botPanel" aria-label="Открыть помощника" title="Помощник Грузилкин">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-9 9c0 1.7.5 3.2 1.3 4.5L3 21l4.7-1.2A9 9 0 1 0 12 3Zm-3.6 8.4a1.3 1.3 0 1 1 2.6 0 1.3 1.3 0 0 1-2.6 0Zm3.6 0a1.3 1.3 0 1 1 2.6 0 1.3 1.3 0 0 1-2.6 0Zm3.6 0a1.3 1.3 0 1 1 2.6 0 1.3 1.3 0 0 1-2.6 0Z"/></svg>
     </button>
   </div>
