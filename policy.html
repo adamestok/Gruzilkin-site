@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791692703475">
+<meta name="gruzilkin-build" content="1791693394300">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -137,12 +137,71 @@ ul{margin:0;padding:0;list-style:none}
 .btn svg{width:18px;height:18px;flex:0 0 18px}
 
 /* ── шапка ── */
+/* ── шапка таксишная: шахматка ──
+   Раньше фон был белый, и шапка выглядела как шапка любого
+   сайта. Теперь это жёлто-графитовая шахматка — та самая, какой
+   обшивают борт такси. Узор нарисован средствами CSS: картинка
+   в самом видном месте страницы стоила бы лишнего запроса.
+
+   Чёрным берём графит #2B3138, а не чистый чёрный: он уже есть
+   в палитре, и третий цвет на сайте не появляется.
+
+   Под каждым элементом шапки — своя подложка. Буквы тёмные, а
+   клетки под ними и жёлтые, и графитовые: без подложки имя
+   компании пропадало бы на тёмной клетке. Сделано так же, как на
+   борту: надпись лежит на панели, а шахматка идёт вокруг. */
+.topbar{
+  background:
+    repeating-conic-gradient(var(--accent) 0 25%, var(--black) 0 50%) 0 0/44px 44px;
+  border-bottom:1px solid var(--black);
+}
+.topbar.is-stuck{
+  background:
+    repeating-conic-gradient(var(--accent) 0 25%, var(--black) 0 50%) 0 0/44px 44px;
+  backdrop-filter:none;
+}
+
+/* Подложки элементов шапки */
+.topbar .brand{
+  background:var(--black);border-radius:14px;
+  padding:7px 14px 7px 9px;margin-left:-9px;
+}
+.topbar .brand__name{color:var(--white)}
+.topbar .brand__sub{color:var(--accent)}
+.topbar .nav{
+  background:var(--black);border-radius:999px;
+  padding:9px 20px;
+}
+.topbar .nav a{color:var(--white)}
+.topbar .hdr-tel{
+  background:var(--black);border-radius:999px;
+  padding:9px 16px;color:var(--white);
+}
+.topbar .burger{
+  background:var(--black);border-radius:12px;
+}
+.topbar .burger span{background:var(--white)}
+.topbar .burger span::before,.topbar .burger span::after{background:var(--white)}
+/* Кнопка заказа жёлтая: на жёлтой клетке её край пропадает,
+   поэтому отделяем её белым кольцом. */
+.topbar .btn-blink-order{box-shadow:0 0 0 4px var(--white)}
+
+@media (max-width:900px){
+  .topbar{
+    background:
+      repeating-conic-gradient(var(--accent) 0 25%, var(--black) 0 50%) 0 0/36px 36px;
+  }
+  .topbar.is-stuck{
+    background:
+      repeating-conic-gradient(var(--accent) 0 25%, var(--black) 0 50%) 0 0/36px 36px;
+  }
+}
+
 .topbar{
   position:fixed;inset:0 0 auto;z-index:1100;
-  background:var(--white);border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--black);
   transition:background .3s var(--ease),border-color .3s;
 }
-.topbar.is-stuck{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom-color:var(--black)}
 .topbar__in{
   max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);
   height:72px;display:flex;align-items:center;gap:clamp(12px,1.6vw,28px);
@@ -575,7 +634,15 @@ ul{margin:0;padding:0;list-style:none}
    Кнопку оставляем во всю ширину: нажатие крупное, это важнее
    ровности. Центрируется только надпись на ней. */
 .car__body{padding:20px;display:grid;gap:14px;align-content:start;text-align:center}
-.car__h{font-size:19px;font-weight:800;letter-spacing:-.01em}
+/* Название машины: крупнее прежнего и с жёлтым контуром.
+   paint-order: stroke fill — контур рисуется под заливкой и
+   остаётся ровно той толщины, какой задан. Без него контур лёг
+   бы поверх букв и утолщал их неравномерно. */
+.car__h{
+  font-size:23px;font-weight:800;letter-spacing:-.015em;
+  -webkit-text-stroke:1px var(--accent);paint-order:stroke fill;
+}
+@media (max-width:700px){.car__h{font-size:21px}}
 .car__spec{display:grid;gap:9px;justify-items:center}
 .car__spec div{display:grid;gap:2px;justify-items:center;font-size:14px}
 .car__spec dt{color:var(--gray-2)}
