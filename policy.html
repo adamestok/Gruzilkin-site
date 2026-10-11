@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791647710527">
+<meta name="gruzilkin-build" content="1791691601345">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -716,6 +716,27 @@ html.has-bot .dock{display:block}
   .gal__i--lg{grid-column:span 2;grid-row:span 1}
   .gal__i--wide{grid-column:span 2}
   .gal__i--tall{grid-row:span 1}
+}
+
+/* ── кто нам доверяет ──
+   Логотипы показываем как есть, цветными: на старом сайте стоял
+   серый фильтр, и половина названий в нём переставала читаться —
+   «нам доверяют» должно выглядеть как доверие, а не как архив.
+   Рамка нужна, чтобы светлый логотип не сливался с фоном. */
+.logos{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;margin-top:8px;
+}
+.logos__i{
+  display:grid;place-items:center;padding:10px 12px;min-height:92px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--white);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.logos__i:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(43,49,56,.1)}
+.logos__i img{max-width:100%;height:auto;display:block}
+@media (max-width:700px){
+  .logos{grid-template-columns:repeat(2,1fr);gap:8px}
+  .logos__i{min-height:76px;padding:8px}
 }
 
 /* ── отзывы ── */

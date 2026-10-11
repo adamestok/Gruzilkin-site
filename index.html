@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791647710527">
+<meta name="gruzilkin-build" content="1791691601345">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -716,6 +716,27 @@ html.has-bot .dock{display:block}
   .gal__i--lg{grid-column:span 2;grid-row:span 1}
   .gal__i--wide{grid-column:span 2}
   .gal__i--tall{grid-row:span 1}
+}
+
+/* ── кто нам доверяет ──
+   Логотипы показываем как есть, цветными: на старом сайте стоял
+   серый фильтр, и половина названий в нём переставала читаться —
+   «нам доверяют» должно выглядеть как доверие, а не как архив.
+   Рамка нужна, чтобы светлый логотип не сливался с фоном. */
+.logos{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:12px;margin-top:8px;
+}
+.logos__i{
+  display:grid;place-items:center;padding:10px 12px;min-height:92px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--white);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.logos__i:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(43,49,56,.1)}
+.logos__i img{max-width:100%;height:auto;display:block}
+@media (max-width:700px){
+  .logos{grid-template-columns:repeat(2,1fr);gap:8px}
+  .logos__i{min-height:76px;padding:8px}
 }
 
 /* ── отзывы ── */
@@ -1593,31 +1614,31 @@ html.no-speech .sayrow{display:none}
 
     <div class="gal">
       <figure class="gal__i gal__i--lg">
-        <img src="https://static.tildacdn.com/tild6632-3232-4866-a361-336537376465/Frame_69.png" width="1150" height="1150" loading="lazy" decoding="async" alt="Грузовое такси Грузилкин — команда и машины компании">
+        <img src="assets/gallery/g01.webp" width="900" height="900" loading="lazy" decoding="async" alt="Грузовое такси Грузилкин — команда и машины компании">
       </figure>
       <figure class="gal__i">
-        <img src="https://static.tildacdn.com/tild6131-3339-4366-b766-363739303234/Frame_70.png" width="564" height="564" loading="lazy" decoding="async" alt="Газель компании на выезде">
+        <img src="assets/gallery/g02.webp" width="564" height="564" loading="lazy" decoding="async" alt="Газель компании на выезде">
       </figure>
       <figure class="gal__i">
-        <img src="https://static.tildacdn.com/tild3038-3234-4432-b532-373932626435/Frame_71.png" width="564" height="564" loading="lazy" decoding="async" alt="Погрузка мебели в газель">
+        <img src="assets/gallery/g03.webp" width="564" height="564" loading="lazy" decoding="async" alt="Погрузка мебели в газель">
       </figure>
       <figure class="gal__i">
-        <img src="https://static.tildacdn.com/tild3639-3566-4564-b163-303836343339/Frame_72.png" width="564" height="564" loading="lazy" decoding="async" alt="Грузчики за работой">
+        <img src="assets/gallery/g04.webp" width="564" height="564" loading="lazy" decoding="async" alt="Грузчики за работой">
       </figure>
       <figure class="gal__i">
-        <img src="https://static.tildacdn.com/tild6535-6465-4966-b135-663335363336/Frame_73.png" width="564" height="564" loading="lazy" decoding="async" alt="Перевозка техники">
+        <img src="assets/gallery/g05.webp" width="564" height="564" loading="lazy" decoding="async" alt="Перевозка техники">
       </figure>
       <figure class="gal__i">
-        <img src="https://static.tildacdn.com/tild3735-3433-4935-b561-383034333465/Frame_75.png" width="564" height="564" loading="lazy" decoding="async" alt="Спецтехника компании">
+        <img src="assets/gallery/g06.webp" width="564" height="564" loading="lazy" decoding="async" alt="Спецтехника компании">
       </figure>
       <figure class="gal__i">
-        <img src="https://static.tildacdn.com/tild3937-3530-4238-a630-313761343132/Frame_76.png" width="564" height="564" loading="lazy" decoding="async" alt="Команда грузчиков">
+        <img src="assets/gallery/g07.webp" width="564" height="564" loading="lazy" decoding="async" alt="Команда грузчиков">
       </figure>
       <figure class="gal__i gal__i--wide">
-        <img src="https://static.tildacdn.com/tild3664-6632-4935-a134-376633346164/Frame_77.png" width="1150" height="750" loading="lazy" decoding="async" alt="Автопарк компании Грузилкин">
+        <img src="assets/gallery/g08.webp" width="900" height="587" loading="lazy" decoding="async" alt="Автопарк компании Грузилкин">
       </figure>
       <figure class="gal__i gal__i--tall">
-        <img src="https://static.tildacdn.com/tild3633-3662-4161-a539-623334626431/Frame_74.png" width="1150" height="1336" loading="lazy" decoding="async" alt="Грузилкин — офис и склад компании">
+        <img src="assets/gallery/g09.webp" width="900" height="1046" loading="lazy" decoding="async" alt="Грузилкин — офис и склад компании">
       </figure>
     </div>
   </div>
@@ -1719,6 +1740,38 @@ html.no-speech .sayrow{display:none}
       <a class="btn btn--ghost" href="https://yandex.ru/maps/org/gruzilkin/239958968423/" target="_blank" rel="noopener" style="min-height:46px;font-size:14px;padding:0 18px">Отзывы на Яндекс Картах (4,8 ★, 191 оценка)</a>
       <a class="btn btn--ghost" href="https://2gis.ru/orenburg/firm/70000001030970283" target="_blank" rel="noopener" style="min-height:46px;font-size:14px;padding:0 18px">Отзывы в 2ГИС (4,7 ★, 122 оценки)</a>
     </p>
+  </div>
+</section>
+
+<!-- ══════════ КТО НАМ ДОВЕРЯЕТ ══════════ -->
+<section class="sec logos-sec" id="logos">
+  <div class="wrap">
+    <div class="shead">
+      <span class="eyebrow">Клиенты</span>
+      <h2>Кто нам доверяет</h2>
+      <p>Эти компании заказывают перевозки у нас постоянно — от одной машины до переезда целого склада.</p>
+      <div class="sayrow"><button class="say" type="button" data-say-from="prev" aria-label="Озвучить"><svg class="say__play" aria-hidden="true"><use href="#i-sound"/></svg><svg class="say__stop" aria-hidden="true"><use href="#i-stop"/></svg></button></div>
+    </div>
+
+    <div class="logos">
+      <div class="logos__i"><img src="assets/logos/a1.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A1 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a2.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A2 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a3.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A3 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a4.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A4 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a5.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A5 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a6.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A6 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a7.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A7 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/a8.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании A8 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b1.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B1 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b2.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B2 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b3.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B3 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b4.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B4 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b5.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B5 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b6.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B6 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b7.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B7 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b8.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B8 — заказчик Грузилкин"></div>
+      <div class="logos__i"><img src="assets/logos/b9.webp" width="260" height="180" loading="lazy" decoding="async" alt="Логотип компании B9 — заказчик Грузилкин"></div>
+    </div>
   </div>
 </section>
 
@@ -2495,11 +2548,6 @@ html.no-speech .sayrow{display:none}
   });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && !panel.hidden) closePanel();
-  });
-  document.addEventListener("click", function (e) {
-    if (!panel.hidden && !panel.contains(e.target) && !openBtn.contains(e.target)) {
-      closePanel();
-    }
   });
 
   form.addEventListener("submit", function (e) {
