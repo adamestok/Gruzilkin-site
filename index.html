@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791691640350">
+<meta name="gruzilkin-build" content="1791692350346">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -527,6 +527,14 @@ ul{margin:0;padding:0;list-style:none}
      чтобы жёлтый на тёмном фоне был заметен. */
   color:var(--accent);opacity:1;
 }
+/* Иконки машин по длине кузова: у 4,2 м и 5—6 м значок шире.
+   Ширины пропорциональны настоящей длине машины (4,9 : 6,1 : 7,1),
+   поэтому карточки сравнимы между собой. */
+.car__ico--42{width:52%}
+.car__ico--56{width:60%}
+/* Чтобы длинный значок не упирался в края карточки */
+.car__ph--type{padding:0 10px}
+
 .car__ph--type img~.car__ico,.car__ph--type:has(img) .car__ico{display:none}
 .car__ph--type img{display:block;width:100%;height:100%;object-fit:cover}
 
@@ -1108,9 +1116,9 @@ html.no-speech .sayrow{display:none}
      действительности: ГАЗ-3307 самосвал и спецтехника тоже на
      этой базе. -->
     <style>.car__ico .w{fill:#FFD400;stroke:none}</style>
-    <symbol id="v-gazel3" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 3 метра"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V15h25v7"/><path d="M27 15h25"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="44" cy="24" r="3.4"/></symbol>
-    <symbol id="v-gazel42" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 4,2 метра"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V15h31v7"/><path d="M27 15h31"/><path d="M27 18h31"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="50" cy="24" r="3.4"/></symbol>
-    <symbol id="v-gazel56" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 5–6 метров"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V15h32v7"/><path d="M27 15h32"/><path d="M27 15V9a10 6 0 0 1 16 0v6"/><path d="M43 15V9a10 6 0 0 1 16 0v6"/><path d="M27 15h32"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="51" cy="24" r="3.4"/></symbol>
+    <symbol id="v-gazel3" viewBox="0 0 48 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 3 метра"><path d="M2 21H46"/><path d="M2 21V13.5L6 9.5H19"/><path d="M19 4V21"/><path d="M19 4H46V21"/><circle class="w" cx="11" cy="24.6" r="3.6"/><circle class="w" cx="38" cy="24.6" r="3.6"/></symbol>
+    <symbol id="v-gazel42" viewBox="0 0 59 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 4,2 метра"><path d="M2 21H57"/><path d="M2 21V13.5L6 9.5H19"/><path d="M19 4V21"/><path d="M19 4H57V21"/><circle class="w" cx="11" cy="24.6" r="3.6"/><circle class="w" cx="49" cy="24.6" r="3.6"/></symbol>
+    <symbol id="v-gazel56" viewBox="0 0 68 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Газель 5–6 метров"><path d="M2 21H66"/><path d="M2 21V13.5L6 9.5H19"/><path d="M19 4V21"/><path d="M19 4H66V21"/><circle class="w" cx="11" cy="24.6" r="3.6"/><circle class="w" cx="58" cy="24.6" r="3.6"/></symbol>
     <symbol id="v-samosval" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Самосвал"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22 30 13 54 6 57 15 33 22z"/><path d="M25 22 33 17"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="50" cy="24" r="3.4"/></symbol>
     <symbol id="v-evac" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Эвакуатор"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22V18h26"/><path d="M29 14.6v-2.2c0-.6.3-1.2.9-1.5l1.5-.7l2-2.3c.4-.5 1-.8 1.6-.8h3c.7 0 1.3.4 1.7 1l1.7 2.4l1.3.7c.6.3.9.9.9 1.6v1.8"/><path d="M29 12.4h14.6"/><circle class="w" cx="32.6" cy="16.2" r="1.8"/><circle class="w" cx="40.4" cy="16.2" r="1.8"/><path d="M53 18 59 11"/><path d="M53 22 59 15"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="46" cy="24" r="3.4"/></symbol>
     <symbol id="v-manip" viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Манипулятор"><path d="M3 22V15h12v7"/><path d="M15 22V6h10v16"/><path d="M15 15h10"/><path d="M27 22h32"/><path d="M34 22V19h7v3"/><path d="M38 19 48 9 56 12"/><path d="M56 12v8c0 2-3 2-3 4"/><circle class="w" cx="10" cy="24" r="3.4"/><circle class="w" cx="48" cy="24" r="3.4"/></symbol>
@@ -1413,7 +1421,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-gazel42"/></svg></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico car__ico--42" aria-hidden="true"><use href="#v-gazel42"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Газель 4,2 м</h3>
           <dl class="car__spec">
@@ -1426,7 +1434,7 @@ html.no-speech .sayrow{display:none}
       </article>
 
       <article class="car">
-        <div class="car__ph car__ph--type"><svg class="car__ico" aria-hidden="true"><use href="#v-gazel56"/></svg></div>
+        <div class="car__ph car__ph--type"><svg class="car__ico car__ico--56" aria-hidden="true"><use href="#v-gazel56"/></svg></div>
         <div class="car__body">
           <h3 class="car__h">Газель 5–6 м</h3>
           <dl class="car__spec">

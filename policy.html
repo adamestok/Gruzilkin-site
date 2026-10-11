@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791691640350">
+<meta name="gruzilkin-build" content="1791692350346">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -527,6 +527,14 @@ ul{margin:0;padding:0;list-style:none}
      чтобы жёлтый на тёмном фоне был заметен. */
   color:var(--accent);opacity:1;
 }
+/* Иконки машин по длине кузова: у 4,2 м и 5—6 м значок шире.
+   Ширины пропорциональны настоящей длине машины (4,9 : 6,1 : 7,1),
+   поэтому карточки сравнимы между собой. */
+.car__ico--42{width:52%}
+.car__ico--56{width:60%}
+/* Чтобы длинный значок не упирался в края карточки */
+.car__ph--type{padding:0 10px}
+
 .car__ph--type img~.car__ico,.car__ph--type:has(img) .car__ico{display:none}
 .car__ph--type img{display:block;width:100%;height:100%;object-fit:cover}
 
