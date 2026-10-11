@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791693394300">
+<meta name="gruzilkin-build" content="1791694251341">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -132,6 +132,11 @@ ul{margin:0;padding:0;list-style:none}
 .btn--ghost:hover{background:var(--black);color:var(--white)}
 .btn--ghost:active{transform:scale(.99)}
 /* на чёрном фоне */
+/* Кнопка оформления — это кнопка, а не ссылка: адреса у
+   оформления нет. Браузер по умолчанию рисует у <button> свою
+   рамку и свой шрифт, поэтому возвращаем те же, что у ссылок. */
+button[data-order-open]{border:0;font-family:inherit;cursor:pointer}
+
 .btn--on-dark{background:transparent;color:var(--white);border:1.5px solid var(--gray-2)}
 .btn--on-dark:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn svg{width:18px;height:18px;flex:0 0 18px}
@@ -1154,7 +1159,7 @@ html.no-speech .sayrow{display:none}
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+﻿<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M2 7h11v9H2z"/><path d="M13 10h4l4 3v3h-8z"/><circle cx="6.5" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/>
@@ -1290,11 +1295,11 @@ html.no-speech .sayrow{display:none}
         <span>Газели 3–6 м</span><span>Спецтехника</span><span>Самосвалы</span><span>Фуры</span>
       </div>
       <div class="hero__cta">
-        <a class="btn btn--main btn--order" href="#calc">
+        <button type="button" class="btn btn--main btn--order" data-order-open>
           Оформить заказ
           <svg aria-hidden="true"><use href="#i-arrow"/></svg>
-        </a>
-        <a class="btn btn--on-dark btn--order" href="#calc" >Оформить заказ</a>
+        </button>
+        <a class="btn btn--on-dark" href="#calc" >Рассчитать стоимость</a>
       </div>
       <div class="hero__trust">
         <span><i></i>100+ машин</span>
@@ -2642,14 +2647,10 @@ html.no-speech .sayrow{display:none}
     openBtn.focus();
   }
 
-  openBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
+  openBtn.addEventListener("click", function () {
     if (panel.hidden) openPanel(true); else closePanel();
   });
-  closeBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    closePanel();
-  });
+  closeBtn.addEventListener("click", closePanel);
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && !panel.hidden) closePanel();
   });
@@ -2660,6 +2661,21 @@ html.no-speech .sayrow{display:none}
     if (!v) return;
     input.value = "";
     ask(v);
+  });
+
+/* Кнопка «Оформить заказ» в первом экране ведёт прямо в
+     оформление: открываем окно и сразу спрашиваем, что
+     перевезти. Отдельная функция, а не вызов из разметки,
+     чтобы разметка не зависела от того, как устроен помощник.
+     Без этого скрипта кнопки на странице нет вовсе: панель
+     иконок показывается только вместе с помощником. */
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    var b = t && t.closest ? t.closest("[data-order-open]") : null;
+    if (!b) return;
+    e.preventDefault();
+    openPanel(true);
+    startOrder();
   });
 
   /* кнопки показываются только вместе со скриптом: без него они были бы мёртвыми */

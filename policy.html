@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="gruzilkin-build" content="1791693394300">
+<meta name="gruzilkin-build" content="1791694251341">
 <title>Грузовое такси с грузчиками в Оренбурге — 8 (3532) 43-24-24 · Грузилкин</title>
 <meta name="description" content="Грузовое такси и грузчики в Оренбурге с 2009 года. Подача газели от 15 минут, 100+ машин, 8 (3532) 43-24-24.">
 <meta property="og:type" content="website">
@@ -132,6 +132,11 @@ ul{margin:0;padding:0;list-style:none}
 .btn--ghost:hover{background:var(--black);color:var(--white)}
 .btn--ghost:active{transform:scale(.99)}
 /* на чёрном фоне */
+/* Кнопка оформления — это кнопка, а не ссылка: адреса у
+   оформления нет. Браузер по умолчанию рисует у <button> свою
+   рамку и свой шрифт, поэтому возвращаем те же, что у ссылок. */
+button[data-order-open]{border:0;font-family:inherit;cursor:pointer}
+
 .btn--on-dark{background:transparent;color:var(--white);border:1.5px solid var(--gray-2)}
 .btn--on-dark:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .btn svg{width:18px;height:18px;flex:0 0 18px}
